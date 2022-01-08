@@ -42,7 +42,10 @@ struct MainTabView: View {
                     }
             }
             .padding(0.0)
-            .navigationTitle("Home")
+            .navigationBarItems(leading:
+                Image("IGlogo")
+            )
+            .foregroundColor(Color.black)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(.black)
         }
@@ -51,6 +54,11 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        Group {
+            MainTabView()
+                .previewInterfaceOrientation(.portrait)
+            MainTabView()
+                .previewInterfaceOrientation(.portrait)
+        }
     }
 }

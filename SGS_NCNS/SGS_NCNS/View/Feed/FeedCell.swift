@@ -104,13 +104,7 @@ struct FeedCell: View {
             .padding(.leading, 15)
             .padding(.bottom, 5)
             
-//            // comment
-//            HStack(spacing: 10) {
-//                Text("batman")
-//                    .font(.system(size: 14, weight: .semibold)) +
-//                Text(" All men have limits. They learn what they are and not to exceed them. I ignore mine.")
-//                    .font(.system(size: 15))
-//            }.padding([.leading, .trailing], 15)
+            // comment
             
             ZStack (alignment: .topLeading) {
                 Button(action: {
