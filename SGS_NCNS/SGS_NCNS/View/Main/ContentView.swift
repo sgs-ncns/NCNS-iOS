@@ -2,15 +2,14 @@
 //  ContentView.swift
 //  SGS_NCNS
 //
-//  Created by 한상혁 on 2021/12/28.
+//  Created by 한상혁 on 2022/01/06.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MainTabView()
     }
 }
 
