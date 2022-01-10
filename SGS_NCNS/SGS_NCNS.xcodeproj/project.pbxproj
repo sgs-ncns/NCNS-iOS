@@ -16,6 +16,8 @@
 		3310FFEF2786799900C157DC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFEE2786799900C157DC /* FeedView.swift */; };
 		3310FFF227867AF000C157DC /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF127867AF000C157DC /* UploadPostView.swift */; };
 		3310FFF427868B4400C157DC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF327868B4400C157DC /* FeedCell.swift */; };
+		338F1E89278BBA5B0091B867 /* FeedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F1E88278BBA5B0091B867 /* FeedContentView.swift */; };
+		338F1E8B278BC8A70091B867 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F1E8A278BC8A70091B867 /* SearchBar.swift */; };
 		33C0EF41277AF4FB00ECE5A4 /* SGS_NCNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */; };
 		33C0EF45277AF4FE00ECE5A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */; };
 		33C0EF48277AF4FE00ECE5A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */; };
@@ -33,6 +35,8 @@
 		3310FFF127867AF000C157DC /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
 		3310FFF327868B4400C157DC /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		3310FFF62786A3F900C157DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		338F1E88278BBA5B0091B867 /* FeedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContentView.swift; sourceTree = "<group>"; };
+		338F1E8A278BC8A70091B867 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		33C0EF3D277AF4FB00ECE5A4 /* SGS_NCNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGS_NCNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGS_NCNSApp.swift; sourceTree = "<group>"; };
 		33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				3310FFEE2786799900C157DC /* FeedView.swift */,
 				3310FFF327868B4400C157DC /* FeedCell.swift */,
+				338F1E88278BBA5B0091B867 /* FeedContentView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				3310FFEC2786769500C157DC /* SearchView.swift */,
+				338F1E8A278BC8A70091B867 /* SearchBar.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -240,11 +246,11 @@
 		33C0EF3F277AF4FB00ECE5A4 /* SGS_NCNS */ = {
 			isa = PBXGroup;
 			children = (
+				33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */,
 				3310FFD227866F3A00C157DC /* Model */,
 				3310FFD027866F3400C157DC /* View */,
 				3310FFD127866F3800C157DC /* ViewModel */,
 				33C0EF46277AF4FE00ECE5A4 /* Preview Content */,
-				33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */,
 				3310FFD627866FD900C157DC /* Resources */,
 				3310FFD427866F3D00C157DC /* Utils */,
 				3310FFF52786A3C900C157DC /* Extensions */,
@@ -388,8 +394,10 @@
 				3310FFE1278674C300C157DC /* ContentView.swift in Sources */,
 				3310FFE7278675C300C157DC /* MainTabView.swift in Sources */,
 				3310FFF227867AF000C157DC /* UploadPostView.swift in Sources */,
+				338F1E89278BBA5B0091B867 /* FeedContentView.swift in Sources */,
 				3310FFED2786769500C157DC /* SearchView.swift in Sources */,
 				3310FFEB2786767000C157DC /* NotificationsView.swift in Sources */,
+				338F1E8B278BC8A70091B867 /* SearchBar.swift in Sources */,
 				3310FFF427868B4400C157DC /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

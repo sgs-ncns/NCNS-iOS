@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeedCell: View {
+    @State var viewMore = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // profile
@@ -105,17 +106,11 @@ struct FeedCell: View {
             .padding(.bottom, 5)
             
             // comment
-            
             ZStack (alignment: .topLeading) {
                 Button(action: {
-                    print("more or follower commet")
+                    self.viewMore = true
                 }, label: {
-                    { Text("batman")
-                        .font(.system(size: 15, weight: .semibold)) +
-                    Text(" All men have limits. They learn what they are and not to exceed them. I ignore mine.")
-                    }()
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 15))
+                    FeedContentView(viewMore: $viewMore)
                 })
                     .foregroundColor(.black)
                 

@@ -57,8 +57,6 @@ struct MainTabView_Previews: PreviewProvider {
         Group {
             MainTabView()
                 .previewInterfaceOrientation(.portrait)
-            MainTabView()
-                .previewInterfaceOrientation(.portrait)
         }
     }
 }
