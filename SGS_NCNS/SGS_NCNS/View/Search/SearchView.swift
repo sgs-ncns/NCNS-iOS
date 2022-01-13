@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State var searchText = ""
+    @State var inSearchMode = false
     var body: some View {
-        Text("Search View")
+        ScrollView {
+            // search view
+            SearchBar(text: $searchText, inSearchMode: $inSearchMode)
+                .padding()
+            // grid view
+            RecommandGridView()
+        }
     }
 }
 
