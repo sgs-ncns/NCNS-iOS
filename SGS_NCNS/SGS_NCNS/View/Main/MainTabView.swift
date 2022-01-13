@@ -8,34 +8,40 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var isHidden: Bool = false
     var body: some View {
         NavigationView {
             TabView {
                 FeedView()
+                    .onAppear { self.isHidden = false }
                     .tabItem {
                         Image("Home")
                             .renderingMode(.template)
                     }
                 
                 SearchView()
+                    .onAppear { self.isHidden = true }
                     .tabItem {
                         Image("Search")
                             .renderingMode(.template)
                     }
                 
                 UploadPostView()
+                    .onAppear { self.isHidden = true }
                     .tabItem {
                         Image("Add")
                             .renderingMode(.template)
                     }
                 
                 NotificationsView()
+                    .onAppear { self.isHidden = true }
                     .tabItem {
                         Image("Heart")
                             .renderingMode(.template)
                     }
                 
                 ProfileView()
+                    .onAppear { self.isHidden = true }
                     .tabItem {
                         Image("Profile")
                             .renderingMode(.template)
@@ -48,6 +54,13 @@ struct MainTabView: View {
             .foregroundColor(Color.black)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(.black)
+            .onAppear(perform: {
+                if #available(iOS 15, *) {
+                    UINavigationBar.changeAppearance(clear: false)
+                    UITabBar.changeAppearance(clear: false)
+                }
+            })
+            .navigationBarHidden(isHidden)
         }
     }
 }
