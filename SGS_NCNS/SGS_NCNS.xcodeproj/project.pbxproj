@@ -18,6 +18,9 @@
 		3310FFF427868B4400C157DC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF327868B4400C157DC /* FeedCell.swift */; };
 		338F1E89278BBA5B0091B867 /* FeedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F1E88278BBA5B0091B867 /* FeedContentView.swift */; };
 		338F1E8B278BC8A70091B867 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F1E8A278BC8A70091B867 /* SearchBar.swift */; };
+		338F1EAC278CB0FD0091B867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF62786A3F900C157DC /* Extensions.swift */; };
+		339F9A5E2790113900B12833 /* RecommandGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F9A5D2790113900B12833 /* RecommandGridView.swift */; };
+		339F9A6027902A7300B12833 /* TestCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F9A5F27902A7300B12833 /* TestCollectionView.swift */; };
 		33C0EF41277AF4FB00ECE5A4 /* SGS_NCNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */; };
 		33C0EF45277AF4FE00ECE5A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */; };
 		33C0EF48277AF4FE00ECE5A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */; };
@@ -37,6 +40,8 @@
 		3310FFF62786A3F900C157DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		338F1E88278BBA5B0091B867 /* FeedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContentView.swift; sourceTree = "<group>"; };
 		338F1E8A278BC8A70091B867 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		339F9A5D2790113900B12833 /* RecommandGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandGridView.swift; sourceTree = "<group>"; };
+		339F9A5F27902A7300B12833 /* TestCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionView.swift; sourceTree = "<group>"; };
 		33C0EF3D277AF4FB00ECE5A4 /* SGS_NCNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGS_NCNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGS_NCNSApp.swift; sourceTree = "<group>"; };
 		33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +191,8 @@
 		3310FFDF278673D400C157DC /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				339F9A5D2790113900B12833 /* RecommandGridView.swift */,
+				339F9A5F27902A7300B12833 /* TestCollectionView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -388,11 +395,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338F1EAC278CB0FD0091B867 /* Extensions.swift in Sources */,
 				3310FFEF2786799900C157DC /* FeedView.swift in Sources */,
+				339F9A6027902A7300B12833 /* TestCollectionView.swift in Sources */,
 				3310FFE92786761100C157DC /* ProfileView.swift in Sources */,
 				33C0EF41277AF4FB00ECE5A4 /* SGS_NCNSApp.swift in Sources */,
 				3310FFE1278674C300C157DC /* ContentView.swift in Sources */,
 				3310FFE7278675C300C157DC /* MainTabView.swift in Sources */,
+				339F9A5E2790113900B12833 /* RecommandGridView.swift in Sources */,
 				3310FFF227867AF000C157DC /* UploadPostView.swift in Sources */,
 				338F1E89278BBA5B0091B867 /* FeedContentView.swift in Sources */,
 				3310FFED2786769500C157DC /* SearchView.swift in Sources */,
