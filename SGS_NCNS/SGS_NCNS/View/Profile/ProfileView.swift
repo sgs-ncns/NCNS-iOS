@@ -9,7 +9,19 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("Profile View")
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 32) {
+                    ProfileHeaderView()
+                    
+                    PostGridView()
+                }.padding(.top)
+            }
+            
+            .navigationTitle("User")
+            .padding(0.0)
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
