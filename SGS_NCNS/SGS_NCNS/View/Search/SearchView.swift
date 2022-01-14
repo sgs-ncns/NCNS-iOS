@@ -15,9 +15,13 @@ struct SearchView: View {
             // search view
             SearchBar(text: $searchText, inSearchMode: $inSearchMode)
                 .padding()
-            // grid view
-            RecommandGridView()
-        }
+            // grid view / userlist view
+            if inSearchMode {
+                UserListView()
+            } else {
+                RecommandGridView()
+            }
+        }.padding(.top, 1)
     }
 }
 
