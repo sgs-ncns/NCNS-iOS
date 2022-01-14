@@ -9,59 +9,47 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var isHidden: Bool = false
+//    @State private var selection = 0
     var body: some View {
-        NavigationView {
-            TabView {
-                FeedView()
-                    .onAppear { self.isHidden = false }
-                    .tabItem {
-                        Image("Home")
-                            .renderingMode(.template)
-                    }
-                
-                SearchView()
-                    .onAppear { self.isHidden = true }
-                    .tabItem {
-                        Image("Search")
-                            .renderingMode(.template)
-                    }
-                
-                UploadPostView()
-                    .onAppear { self.isHidden = true }
-                    .tabItem {
-                        Image("Add")
-                            .renderingMode(.template)
-                    }
-                
-                NotificationsView()
-                    .onAppear { self.isHidden = true }
-                    .tabItem {
-                        Image("Heart")
-                            .renderingMode(.template)
-                    }
-                
-                ProfileView()
-                    .onAppear { self.isHidden = true }
-                    .tabItem {
-                        Image("Profile")
-                            .renderingMode(.template)
-                    }
-            }
-            .padding(0.0)
-            .navigationBarItems(leading:
-                Image("IGlogo")
-            )
-            .foregroundColor(Color.black)
-            .navigationBarTitleDisplayMode(.inline)
-            .accentColor(.black)
-            .onAppear(perform: {
-                if #available(iOS 15, *) {
-                    UINavigationBar.changeAppearance(clear: false)
-                    UITabBar.changeAppearance(clear: false)
+        TabView {
+            FeedView()
+                .tabItem {
+                    Image("Home")
+                        .renderingMode(.template)
                 }
-            })
-            .navigationBarHidden(isHidden)
+            
+            SearchView()
+            .tabItem {
+                Image("Search")
+                    .renderingMode(.template)
+            }
+            
+            UploadPostView()
+                .tabItem {
+                    Image("Add")
+                        .renderingMode(.template)
+                }
+            
+            NotificationsView()
+                .tabItem {
+                    Image("Heart")
+                        .renderingMode(.template)
+                }
+            
+            ProfileView()
+                .tabItem {
+                    Image("Profile")
+                        .renderingMode(.template)
+                }
         }
+        .foregroundColor(Color.black)
+        .accentColor(.black)
+//        .onAppear(perform: {
+//            if #available(iOS 15, *) {
+//                UINavigationBar.changeAppearance(clear: false)
+//                UITabBar.changeAppearance(clear: false)
+//            }
+//        })
     }
 }
 

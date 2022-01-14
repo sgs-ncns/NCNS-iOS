@@ -9,12 +9,18 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(1 ..< 10) { _ in
-                    FeedCell()
+        NavigationView {
+            ScrollView {
+                LazyVStack {
+                    ForEach(1 ..< 10) { _ in
+                        FeedCell()
+                    }
                 }
             }
+            .navigationTitle("")
+            .padding(0.0)
+            .navigationBarItems(leading:Image("IGlogo"))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

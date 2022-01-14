@@ -9,7 +9,14 @@ import SwiftUI
 
 struct UploadPostView: View {
     var body: some View {
-        Text("UploadPost View")
+        NavigationView {
+            Text("UploadPost View")
+
+            
+            .navigationTitle("UploadPostView")
+            .padding(0.0)
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
