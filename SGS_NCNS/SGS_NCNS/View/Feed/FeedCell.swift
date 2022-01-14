@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedCell: View {
     @State var viewMore = false
+    @State var isLiked = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // profile
@@ -21,7 +22,7 @@ struct FeedCell: View {
                 
                 
                 Text("User")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .padding(.leading, 4)
                 
                 Spacer()
@@ -50,14 +51,7 @@ struct FeedCell: View {
                 Spacer()
                     .frame(width: 15)
                 
-                Button(action: {}, label: {
-                    Image("Heart")
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 23, height: 23)
-                        .padding(4)
-                })
+                HeartButton(isLiked: $isLiked)
                 
                 Button(action: {}, label: {
                     Image("Comment")
@@ -66,6 +60,7 @@ struct FeedCell: View {
                         .scaledToFill()
                         .frame(width: 23, height: 23)
                         .padding(4)
+                        .foregroundColor(.black)
                 })
                 
                 Button(action: {}, label: {
@@ -75,6 +70,7 @@ struct FeedCell: View {
                         .scaledToFill()
                         .frame(width: 23, height: 23)
                         .padding(4)
+                        .foregroundColor(.black)
                 })
                 
                 Spacer()
@@ -86,18 +82,18 @@ struct FeedCell: View {
                         .scaledToFill()
                         .frame(width: 23, height: 23)
                         .padding(4)
+                        .foregroundColor(.black)
                 })
                 
                 Spacer()
                     .frame(width: 15)
             }
             .frame(height: 50)
-            .foregroundColor(.black)
             
             // Like
             HStack {
                 Text("3 Like")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .onTapGesture {
                         print("click like")
                     }
@@ -114,11 +110,6 @@ struct FeedCell: View {
                 })
                     .foregroundColor(.black)
                 
-                Text("batman")
-                    .font(.system(size: 15, weight: .semibold))
-                    .onTapGesture {
-                        print("click user")
-                    }
             }
             .padding([.leading, .trailing], 15)
         }

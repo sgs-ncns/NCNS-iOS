@@ -13,27 +13,27 @@ struct FeedContentView: View {
         if !viewMore {
             // 더 보기 누르기 전 뷰
             HStack {
-                { Text("batman")
-                    .font(.system(size: 15, weight: .semibold)) +
-                Text(" All men have limits. They learn what they are and not to exceed them. I ignore mine.")
+                { Text("User")
+                    .font(.system(size: 13, weight: .semibold)) + Text(" ") +
+                Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
                 }()
                     .lineLimit(1)
                     .multilineTextAlignment(.leading)
-                    .font(.system(size: 15))
+                    .font(.system(size: 13))
                 Text("더 보기")
-                    .font(.system(size: 15))
+                    .font(.system(size: 13))
                     .foregroundColor(.gray)
             }
             
         } else {
             // 더 보기 눌렀을 때 뷰
-            { Text("batman")
-                .font(.system(size: 15, weight: .semibold)) +
-            Text(" All men have limits. They learn what they are and not to exceed them. I ignore mine.")
+            { Text("User")
+                .font(.system(size: 13, weight: .semibold)) + Text(" ") +
+            Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
             }()
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
-                .font(.system(size: 15))
+                .font(.system(size: 13))
         }
         
     }
@@ -41,6 +41,6 @@ struct FeedContentView: View {
 
 struct FeedContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedContentView(viewMore: .constant(false))
+        FeedContentView(viewMore: .constant(true))
     }
 }
