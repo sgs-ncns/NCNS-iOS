@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RecommandGridView: View {
     // 한 화면에 2개
-    private let items = [GridItem(), GridItem()]
-    private let width = UIScreen.screenWidth / 2
+    private let items = [GridItem(), GridItem(), GridItem()]
+    private let width = UIScreen.screenWidth / 3
     
     var body: some View {
         LazyVGrid(columns: items, spacing: 2, content: {
