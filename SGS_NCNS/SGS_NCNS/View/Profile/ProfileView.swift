@@ -10,14 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 32) {
-                    ProfileHeaderView()
-                    
-                    PostGridView()
-                }.padding(.top)
-            }
-            
+            ProfileSubView()
             .navigationTitle("User")
             .padding(0.0)
             .navigationBarTitleDisplayMode(.inline)

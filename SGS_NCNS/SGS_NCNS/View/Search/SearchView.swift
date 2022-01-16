@@ -11,17 +11,21 @@ struct SearchView: View {
     @State var searchText = ""
     @State var inSearchMode = false
     var body: some View {
-        ScrollView {
-            // search view
-            SearchBar(text: $searchText, inSearchMode: $inSearchMode)
-                .padding()
-            // grid view / userlist view
-            if inSearchMode {
-                UserListView()
-            } else {
-                RecommandGridView()
-            }
-        }.padding(.top, 1)
+        NavigationView {
+            ScrollView {
+                // search view
+                SearchBar(text: $searchText, inSearchMode: $inSearchMode)
+                    .padding()
+                // grid view / userlist view
+                if inSearchMode {
+                    UserListView()
+                } else {
+                    RecommandGridView()
+                }
+            }.padding(.top, 1)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
+        }
     }
 }
 
