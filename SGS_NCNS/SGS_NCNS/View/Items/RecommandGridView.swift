@@ -15,7 +15,7 @@ struct RecommandGridView: View {
     var body: some View {
         LazyVGrid(columns: items, spacing: 2, content: {
             ForEach(1 ..< 10) {_ in
-                Image("Exprofile_punch")
+                Image("Exprofile_aim")
                     .resizable()
                     .frame(width: width, height: width)
             }
