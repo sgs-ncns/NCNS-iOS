@@ -16,7 +16,7 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
                 placeholder
-                    .foregroundColor(Color(.init(white: 1, alpha: 0.8)))
+                    .foregroundColor(Color(.init(white: 1, alpha: 0.5)))
                     .padding(.leading, 40)
             }
             
@@ -26,6 +26,7 @@ struct CustomTextField: View {
                     .scaledToFit()
                     .frame(width: 20, height: 20)
                     .foregroundColor(.white)
+                    .padding(.trailing, 10)
                 
                 TextField("", text: $text)
             }
