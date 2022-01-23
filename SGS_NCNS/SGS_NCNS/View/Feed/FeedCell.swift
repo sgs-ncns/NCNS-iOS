@@ -21,7 +21,7 @@ struct FeedCell: View {
                     .padding(.leading, 10)
                 
                 
-                Text("User")
+                Text("User ID")
                     .font(.system(size: 13, weight: .semibold))
                     .padding(.leading, 4)
                 
@@ -112,6 +112,14 @@ struct FeedCell: View {
                 
             }
             .padding([.leading, .trailing], 15)
+            
+            Button(action: {}, label: {
+                Text("댓글 ~개 모두 보기")
+                    .font(.system(size: 13))
+                    .foregroundColor(.gray)
+            })
+                .padding([.leading, .trailing], 15)
+                .padding([.top, .bottom], 5)
         }
     }
 }

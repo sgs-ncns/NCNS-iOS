@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    @State private var email = ""
+    @State private var account = ""
     @State private var username = ""
-    @State private var fullname = ""
+    @State private var email = ""
     @State private var password = ""
     @State private var selectedImage: UIImage?
     @State private var image: Image?
@@ -46,7 +46,8 @@ struct RegistrationView: View {
                 }.padding()
                 
                 VStack(spacing: 20) {
-                    CustomTextField(text: $email, placeholder: Text("Email"), imageName: "envelope")
+                    
+                    CustomTextField(text: $account, placeholder: Text("Account"), imageName: "person")
                         .padding()
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)
@@ -60,7 +61,8 @@ struct RegistrationView: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
                     
-                    CustomTextField(text: $fullname, placeholder: Text("Full name"), imageName: "person")
+                    
+                    CustomTextField(text: $email, placeholder: Text("Email"), imageName: "envelope")
                         .padding()
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)
