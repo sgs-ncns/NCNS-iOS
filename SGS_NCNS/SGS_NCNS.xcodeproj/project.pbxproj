@@ -40,7 +40,7 @@
 		33C0EF41277AF4FB00ECE5A4 /* SGS_NCNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */; };
 		33C0EF45277AF4FE00ECE5A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */; };
 		33C0EF48277AF4FE00ECE5A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */; };
-		33F071CD277CCC3000D54D12 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 33F071CC277CCC3000D54D12 /* Alamofire */; };
+		33E9EFF6279806FB00E582AF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E9EFF5279806FB00E582AF /* CommentView.swift */; };
 		33F071D0277CCE2000D54D12 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 33F071CF277CCE2000D54D12 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +79,7 @@
 		33C0EF40277AF4FB00ECE5A4 /* SGS_NCNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGS_NCNSApp.swift; sourceTree = "<group>"; };
 		33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		33E9EFF5279806FB00E582AF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		566B2BCA5484F230B3877D28 /* Pods-SGS_NCNS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGS_NCNS.release.xcconfig"; path = "Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS.release.xcconfig"; sourceTree = "<group>"; };
 		A26F3D315ADFBCFAD6DE6A8A /* Pods_SGS_NCNS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SGS_NCNS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CFD19C522C6CFE196A3EFB /* Pods-SGS_NCNS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGS_NCNS.debug.xcconfig"; path = "Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 			files = (
 				33F071D0277CCE2000D54D12 /* Kingfisher in Frameworks */,
 				0655ECCB2D4665798E37FF92 /* Pods_SGS_NCNS.framework in Frameworks */,
-				33F071CD277CCC3000D54D12 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +219,7 @@
 		3310FFDE278673C200C157DC /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				33E9EFF5279806FB00E582AF /* CommentView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -352,6 +353,7 @@
 				33C0EF39277AF4FB00ECE5A4 /* Sources */,
 				33C0EF3A277AF4FB00ECE5A4 /* Frameworks */,
 				33C0EF3B277AF4FB00ECE5A4 /* Resources */,
+				89CE0E5D7BF75AC3B12B70C9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -359,7 +361,6 @@
 			);
 			name = SGS_NCNS;
 			packageProductDependencies = (
-				33F071CC277CCC3000D54D12 /* Alamofire */,
 				33F071CF277CCE2000D54D12 /* Kingfisher */,
 			);
 			productName = SGS_NCNS;
@@ -391,7 +392,6 @@
 			);
 			mainGroup = 33C0EF34277AF4FB00ECE5A4;
 			packageReferences = (
-				33F071CB277CCC3000D54D12 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 33C0EF3E277AF4FB00ECE5A4 /* Products */;
@@ -438,6 +438,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		89CE0E5D7BF75AC3B12B70C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -452,6 +469,7 @@
 				33838BD0279484C800196248 /* ResetPasswordView.swift in Sources */,
 				33838BCE279484B400196248 /* RegistrationView.swift in Sources */,
 				33838BC12794414600196248 /* UploadPostView.swift in Sources */,
+				33E9EFF6279806FB00E582AF /* CommentView.swift in Sources */,
 				339F9A6027902A7300B12833 /* TestCollectionView.swift in Sources */,
 				3310FFE92786761100C157DC /* ProfileView.swift in Sources */,
 				33C0EF41277AF4FB00ECE5A4 /* SGS_NCNSApp.swift in Sources */,
@@ -683,14 +701,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		33F071CB277CCC3000D54D12 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -702,11 +712,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		33F071CC277CCC3000D54D12 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 33F071CB277CCC3000D54D12 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		33F071CF277CCE2000D54D12 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */;

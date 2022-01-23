@@ -6,7 +6,8 @@ target 'SGS_NCNS' do
   use_frameworks!
   
 
-
   # Pods for SGS_NCNS
+
+  pod 'Moya/Combine', '~> 15.0'
 
 end
