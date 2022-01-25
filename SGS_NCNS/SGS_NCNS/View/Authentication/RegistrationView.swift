@@ -22,28 +22,29 @@ struct RegistrationView: View {
             LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack {
-                ZStack {
-                    if let image = image {
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 140, height: 140)
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
-                    } else {
-                        Button(action: { imagePickerPresented.toggle() },
-                               label: {
-                            Image("plus_photo")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 140, height: 140)
-                                .foregroundColor(.white)
-                        }).sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content: {
-                            ImagePicker(image: $selectedImage)
-                        })
-                    }
-                }.padding()
+// 회원가입 할때 이미지 넣을 시 추가
+//                ZStack {
+//                    if let image = image {
+//                        image
+//                            .resizable()
+//                            .scaledToFill()
+//                            .frame(width: 140, height: 140)
+//                            .foregroundColor(.white)
+//                            .clipShape(Circle())
+//                    } else {
+//                        Button(action: { imagePickerPresented.toggle() },
+//                               label: {
+//                            Image("plus_photo")
+//                                .renderingMode(.template)
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 140, height: 140)
+//                                .foregroundColor(.white)
+//                        }).sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content: {
+//                            ImagePicker(image: $selectedImage)
+//                        })
+//                    }
+//                }.padding()
                 
                 VStack(spacing: 20) {
                     
@@ -76,6 +77,7 @@ struct RegistrationView: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
                 }
+                .padding(.top, 154)
                 
                 Button(action: {}, label: {
                     Text("Sign Up")

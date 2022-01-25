@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject private var viewModel = LoginViewModel()
+    @Binding var isLogin: Bool
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,15 +25,15 @@ struct LoginView: View {
                     
                     // email
                     VStack(spacing: 20) {
-                        CustomTextField(text: $email, placeholder: Text("Email"), imageName: "envelope")
+                        LoginCustomTextField(text: $viewModel.email, placeholder: Text("Email"), imageName: "envelope")
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
                             .foregroundColor(.white)
                             .padding(.horizontal, 32)
-                        // password
+                    // password
                         
-                        CustomSecureField(text: $password, placeholder: Text("Password"))
+                        CustomSecureField(text: $viewModel.password, placeholder: Text("Password"))
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
@@ -54,19 +55,29 @@ struct LoginView: View {
                     }
                     
                     // sign in
-                    
-                    Button(action: {}, label: {
+                    Button {
+                        viewModel.login()
+                    } label: {
                         Text("Sign In")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(width: 360, height: 50)
-                            .background(Color("SignInButton"))
-                            .clipShape(Capsule())
-                            .padding()
-                        
-                    })
-                    
+                    }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 360, height: 50)
+                    .background(Color("SignInButton"))
+                    .clipShape(Capsule())
+                    .padding()
+                    .opacity(viewModel.canSubmit ? 1 : 0.6)
+                    .disabled(!viewModel.canSubmit)
+                      
                     Spacer()
+                    
+                    Button(action: {
+                        isLogin = true
+                    }, label: {
+                        Text("ContentView")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                    })
                     
                     NavigationLink(
                         destination:
@@ -89,6 +100,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isLogin: .constant(false))
     }
 }
