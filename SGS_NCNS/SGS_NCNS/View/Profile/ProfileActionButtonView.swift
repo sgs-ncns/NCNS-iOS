@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ProfileActionButtonView: View {
-    var isCurrentUser = true
+
+    @EnvironmentObject var isCurrentUser: MySettings
+    
     // 목업으로 팔로우 안한걸로 체크 -> 나중에 빼기
     var isFollowed = false
     
     var body: some View {
-        if isCurrentUser {
+        if self.isCurrentUser.checkUser.isMe {
             // 현재 유저면 Edit Profile
             Button(action: {
                 

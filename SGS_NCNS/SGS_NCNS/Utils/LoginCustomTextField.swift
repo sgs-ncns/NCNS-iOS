@@ -1,13 +1,13 @@
 //
-//  CustomTextField.swift
+//  LoginCustomTextField.swift
 //  SGS_NCNS
 //
-//  Created by 한상혁 on 2022/01/17.
+//  Created by 한상혁 on 2022/01/24.
 //
 
 import SwiftUI
 
-struct CustomTextField: View {
+struct LoginCustomTextField: View {
     @Binding var text: String
     let placeholder: Text
     let imageName: String
@@ -36,8 +36,8 @@ struct CustomTextField: View {
     }
 }
 
-struct CustomTextField_Previews: PreviewProvider {
+struct LoginCustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(text: .constant(""), placeholder: Text("Email"), imageName: "envelope")
+        LoginCustomTextField(text: .constant(""), placeholder: Text("Email"), imageName: "envelope")
     }
 }

@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct UserListView: View {
+    @EnvironmentObject var isCurrentUser: MySettings
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(0 ..< 20) { _ in
                     NavigationLink(
-                        destination: ProfileSubView(),
+                        destination: ProfileSubView()
+                            .onAppear(perform: {
+                                isCurrentUser.checkUser.isMe = false
+                            }),
                         label: {
                         UserCell()
                             .padding(.leading)

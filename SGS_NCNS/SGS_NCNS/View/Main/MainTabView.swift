@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var isCurrentUser: MySettings
     @State private var isHidden: Bool = false
-//    @State private var selection = 0
+    
     var body: some View {
         TabView {
             FeedView()
@@ -41,6 +42,9 @@ struct MainTabView: View {
                     Image("Profile")
                         .renderingMode(.template)
                 }
+                .onAppear(perform: {
+                    self.isCurrentUser.checkUser.isMe = true
+                })
         }
         .foregroundColor(Color.black)
         .accentColor(.black)
