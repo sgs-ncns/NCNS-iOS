@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecommandGridView: View {
-    // 한 화면에 2개
+    // 한 화면에 3개
     private let items = [GridItem(), GridItem(), GridItem()]
     private let width = UIScreen.screenWidth / 3
     

@@ -113,12 +113,11 @@ struct FeedCell: View {
             }
             .padding([.leading, .trailing], 15)
             
-            Button(action: {}, label: {
+            NavigationLink(destination: CommentView(), label: {
                 Text("댓글 ~개 모두 보기")
                     .font(.system(size: 13))
                     .foregroundColor(.gray)
-            })
-                .padding([.leading, .trailing], 15)
+            }).padding([.leading, .trailing], 15)
                 .padding([.top, .bottom], 5)
         }
     }
