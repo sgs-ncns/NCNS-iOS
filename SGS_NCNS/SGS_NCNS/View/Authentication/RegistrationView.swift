@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    @State private var account = ""
-    @State private var username = ""
     @State private var email = ""
+    @State private var nickname = ""
+    @State private var accountName = ""
     @State private var password = ""
     @State private var selectedImage: UIImage?
     @State private var image: Image?
@@ -48,22 +48,21 @@ struct RegistrationView: View {
                 
                 VStack(spacing: 20) {
                     
-                    CustomTextField(text: $account, placeholder: Text("Account"), imageName: "person")
-                        .padding()
-                        .background(Color(.init(white: 1, alpha: 0.15)))
-                        .cornerRadius(10)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 32)
-                    
-                    CustomTextField(text: $username, placeholder: Text("Username"), imageName: "person")
-                        .padding()
-                        .background(Color(.init(white: 1, alpha: 0.15)))
-                        .cornerRadius(10)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 32)
-                    
-                    
                     CustomTextField(text: $email, placeholder: Text("Email"), imageName: "envelope")
+                        .padding()
+                        .background(Color(.init(white: 1, alpha: 0.15)))
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 32)
+                    
+                    CustomTextField(text: $nickname, placeholder: Text("Nickname"), imageName: "person")
+                        .padding()
+                        .background(Color(.init(white: 1, alpha: 0.15)))
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 32)
+                    
+                    CustomTextField(text: $accountName, placeholder: Text("Account Name"), imageName: "person")
                         .padding()
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)

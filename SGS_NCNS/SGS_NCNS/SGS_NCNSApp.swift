@@ -20,15 +20,20 @@ var isCurrentUser = MySettings()
 @main
 struct SGS_NCNSApp: App {
     // 로그인 화면에서 로그인 성공 시 이동
-    
+    @StateObject var googleUserAuthModel: GoogleUserAuthModel = GoogleUserAuthModel()
+    @StateObject var appleUserAuthModel: AppleUserAuthModel = AppleUserAuthModel()
     @State var isLogin = false
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
                 if !isLogin {
                     LoginView(isLogin: $isLogin)
+                        .environmentObject(googleUserAuthModel)
+                        .environmentObject(appleUserAuthModel)
                 } else {
-                    ContentView().environmentObject(isCurrentUser)
+                    ContentView()
+                        .environmentObject(isCurrentUser)
                 }
             }.animation(isLogin ? .easeOut : nil)
         }

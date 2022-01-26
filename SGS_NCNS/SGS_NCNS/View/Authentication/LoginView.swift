@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var googleUserAuthModel: GoogleUserAuthModel
     @StateObject private var viewModel = LoginViewModel()
     @Binding var isLogin: Bool
     
@@ -68,6 +69,16 @@ struct LoginView: View {
                     .padding()
                     .opacity(viewModel.canSubmit ? 1 : 0.6)
                     .disabled(!viewModel.canSubmit)
+                    
+                    VStack(spacing: 10) {
+                        GoogleSignInButtonWrapper(handler: googleUserAuthModel.signIn)
+                            .frame(width: 280, height: 44, alignment: .center)
+                        
+                        AppleSignInButtonWrapper()
+                            .frame(width: 280, height: 44, alignment: .center)
+                        
+                    }
+                    
                       
                     Spacer()
                     

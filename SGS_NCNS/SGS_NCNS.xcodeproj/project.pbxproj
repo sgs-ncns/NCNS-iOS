@@ -15,6 +15,14 @@
 		3310FFED2786769500C157DC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFEC2786769500C157DC /* SearchView.swift */; };
 		3310FFEF2786799900C157DC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFEE2786799900C157DC /* FeedView.swift */; };
 		3310FFF427868B4400C157DC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF327868B4400C157DC /* FeedCell.swift */; };
+		3329AE6927A1534800649F88 /* AppleUserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3329AE6827A1534800649F88 /* AppleUserAuthModel.swift */; };
+		33363E6727A0E5C100C44614 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 33363E6627A0E5C100C44614 /* JWTDecode */; };
+		33363E6A27A0E5F200C44614 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 33363E6927A0E5F200C44614 /* GoogleSignIn */; };
+		33363E6E27A0E66900C44614 /* GoogleUserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33363E6D27A0E66900C44614 /* GoogleUserAuthModel.swift */; };
+		33363E7027A0E68000C44614 /* GoogleSignInButtonWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33363E6F27A0E68000C44614 /* GoogleSignInButtonWrapper.swift */; };
+		33363E7627A0E78100C44614 /* UserSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33363E7527A0E78100C44614 /* UserSignUpModel.swift */; };
+		33363E7827A0E7C300C44614 /* SocialSignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33363E7727A0E7C300C44614 /* SocialSignInModel.swift */; };
+		33363E7F27A1343300C44614 /* AppleSignInButtonWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33363E7E27A1343300C44614 /* AppleSignInButtonWrapper.swift */; };
 		33838BC12794414600196248 /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33838BC02794414600196248 /* UploadPostView.swift */; };
 		33838BC32794415000196248 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33838BC22794415000196248 /* ImagePicker.swift */; };
 		33838BC92794443700196248 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33838BC82794443700196248 /* TextView.swift */; };
@@ -59,6 +67,13 @@
 		3310FFEE2786799900C157DC /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3310FFF327868B4400C157DC /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		3310FFF62786A3F900C157DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3329AE6827A1534800649F88 /* AppleUserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUserAuthModel.swift; sourceTree = "<group>"; };
+		33363E6D27A0E66900C44614 /* GoogleUserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthModel.swift; sourceTree = "<group>"; };
+		33363E6F27A0E68000C44614 /* GoogleSignInButtonWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButtonWrapper.swift; sourceTree = "<group>"; };
+		33363E7527A0E78100C44614 /* UserSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpModel.swift; sourceTree = "<group>"; };
+		33363E7727A0E7C300C44614 /* SocialSignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInModel.swift; sourceTree = "<group>"; };
+		33363E7A27A1180C00C44614 /* SGS_NCNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SGS_NCNS.entitlements; sourceTree = "<group>"; };
+		33363E7E27A1343300C44614 /* AppleSignInButtonWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInButtonWrapper.swift; sourceTree = "<group>"; };
 		33838BC02794414600196248 /* UploadPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
 		33838BC22794415000196248 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		33838BC82794443700196248 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -102,7 +117,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F071D0277CCE2000D54D12 /* Kingfisher in Frameworks */,
+				33363E6A27A0E5F200C44614 /* GoogleSignIn in Frameworks */,
 				0655ECCB2D4665798E37FF92 /* Pods_SGS_NCNS.framework in Frameworks */,
+				33363E6727A0E5C100C44614 /* JWTDecode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +156,7 @@
 		3310FFD227866F3A00C157DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				33363E6127A0D20600C44614 /* Authentication */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +270,8 @@
 		3310FFE3278674F300C157DC /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				3329AE6727A1532A00649F88 /* SignInWithApple */,
+				33363E7927A0E86C00C44614 /* SignInWithGoogle */,
 				339F8D3E279E4A3300A72947 /* LoginViewModel.swift */,
 			);
 			path = Authentication;
@@ -271,9 +291,52 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		3329AE6727A1532A00649F88 /* SignInWithApple */ = {
+			isa = PBXGroup;
+			children = (
+				3329AE6827A1534800649F88 /* AppleUserAuthModel.swift */,
+			);
+			path = SignInWithApple;
+			sourceTree = "<group>";
+		};
+		33363E6127A0D20600C44614 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				33363E7527A0E78100C44614 /* UserSignUpModel.swift */,
+				33363E7727A0E7C300C44614 /* SocialSignInModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		33363E6B27A0E62600C44614 /* SignInWithApple */ = {
+			isa = PBXGroup;
+			children = (
+				33363E7E27A1343300C44614 /* AppleSignInButtonWrapper.swift */,
+			);
+			path = SignInWithApple;
+			sourceTree = "<group>";
+		};
+		33363E6C27A0E62A00C44614 /* SignInWithGoogle */ = {
+			isa = PBXGroup;
+			children = (
+				33363E6F27A0E68000C44614 /* GoogleSignInButtonWrapper.swift */,
+			);
+			path = SignInWithGoogle;
+			sourceTree = "<group>";
+		};
+		33363E7927A0E86C00C44614 /* SignInWithGoogle */ = {
+			isa = PBXGroup;
+			children = (
+				33363E6D27A0E66900C44614 /* GoogleUserAuthModel.swift */,
+			);
+			path = SignInWithGoogle;
+			sourceTree = "<group>";
+		};
 		33838BCA2794849900196248 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				33363E6C27A0E62A00C44614 /* SignInWithGoogle */,
+				33363E6B27A0E62600C44614 /* SignInWithApple */,
 				33838BCB279484A900196248 /* LoginView.swift */,
 				33838BCD279484B400196248 /* RegistrationView.swift */,
 				33838BCF279484C800196248 /* ResetPasswordView.swift */,
@@ -312,6 +375,7 @@
 		33C0EF3F277AF4FB00ECE5A4 /* SGS_NCNS */ = {
 			isa = PBXGroup;
 			children = (
+				33363E7A27A1180C00C44614 /* SGS_NCNS.entitlements */,
 				339F8D3C279DDF8900A72947 /* SGS-NCNS-Info.plist */,
 				339F8D38279DDECB00A72947 /* SGS_NCNSApp.swift */,
 				339F8D2C279DDD2700A72947 /* Network */,
@@ -370,6 +434,8 @@
 			name = SGS_NCNS;
 			packageProductDependencies = (
 				33F071CF277CCE2000D54D12 /* Kingfisher */,
+				33363E6627A0E5C100C44614 /* JWTDecode */,
+				33363E6927A0E5F200C44614 /* GoogleSignIn */,
 			);
 			productName = SGS_NCNS;
 			productReference = 33C0EF3D277AF4FB00ECE5A4 /* SGS_NCNS.app */;
@@ -401,6 +467,8 @@
 			mainGroup = 33C0EF34277AF4FB00ECE5A4;
 			packageReferences = (
 				33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				33363E6527A0E5C100C44614 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
+				33363E6827A0E5F200C44614 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 33C0EF3E277AF4FB00ECE5A4 /* Products */;
 			projectDirPath = "";
@@ -476,16 +544,21 @@
 				338F1EAC278CB0FD0091B867 /* Extensions.swift in Sources */,
 				3310FFEF2786799900C157DC /* FeedView.swift in Sources */,
 				339F9A6A2791693300B12833 /* UserListView.swift in Sources */,
+				3329AE6927A1534800649F88 /* AppleUserAuthModel.swift in Sources */,
+				33363E7627A0E78100C44614 /* UserSignUpModel.swift in Sources */,
 				33838BD0279484C800196248 /* ResetPasswordView.swift in Sources */,
 				33838BCE279484B400196248 /* RegistrationView.swift in Sources */,
 				33838BC12794414600196248 /* UploadPostView.swift in Sources */,
 				33E9EFF6279806FB00E582AF /* CommentView.swift in Sources */,
 				339F9A6027902A7300B12833 /* TestCollectionView.swift in Sources */,
+				33363E7827A0E7C300C44614 /* SocialSignInModel.swift in Sources */,
 				3310FFE92786761100C157DC /* ProfileView.swift in Sources */,
 				3310FFE1278674C300C157DC /* ContentView.swift in Sources */,
 				3310FFE7278675C300C157DC /* MainTabView.swift in Sources */,
 				339F8D3F279E4A3300A72947 /* LoginViewModel.swift in Sources */,
 				33838BC92794443700196248 /* TextView.swift in Sources */,
+				33363E6E27A0E66900C44614 /* GoogleUserAuthModel.swift in Sources */,
+				33363E7F27A1343300C44614 /* AppleSignInButtonWrapper.swift in Sources */,
 				339F8D2E279DDD3500A72947 /* APIRequest.swift in Sources */,
 				339F9A6C279169B000B12833 /* UserCell.swift in Sources */,
 				339F9A6227914ED400B12833 /* ProfileHeaderView.swift in Sources */,
@@ -500,6 +573,7 @@
 				339F8D41279ECF2F00A72947 /* LoginCustomTextField.swift in Sources */,
 				3310FFEB2786767000C157DC /* NotificationsView.swift in Sources */,
 				339F9A682791618F00B12833 /* ProfileActionButtonView.swift in Sources */,
+				33363E7027A0E68000C44614 /* GoogleSignInButtonWrapper.swift in Sources */,
 				338F1E8B278BC8A70091B867 /* SearchBar.swift in Sources */,
 				3310FFF427868B4400C157DC /* FeedCell.swift in Sources */,
 				339F8D3A279DDECB00A72947 /* SGS_NCNSApp.swift in Sources */,
@@ -635,6 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SGS_NCNS/SGS_NCNS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SGS_NCNS/Preview Content\"";
@@ -666,6 +741,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SGS_NCNS/SGS_NCNS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SGS_NCNS/Preview Content\"";
@@ -715,6 +791,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		33363E6527A0E5C100C44614 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		33363E6827A0E5F200C44614 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -726,6 +818,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		33363E6627A0E5C100C44614 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33363E6527A0E5C100C44614 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			productName = JWTDecode;
+		};
+		33363E6927A0E5F200C44614 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33363E6827A0E5F200C44614 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
 		33F071CF277CCE2000D54D12 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 33F071CE277CCE2000D54D12 /* XCRemoteSwiftPackageReference "Kingfisher" */;
