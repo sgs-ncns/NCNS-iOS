@@ -20,14 +20,17 @@ var isCurrentUser = MySettings()
 @main
 struct SGS_NCNSApp: App {
     // 로그인 화면에서 로그인 성공 시 이동
+    
     @State var isLogin = false
     var body: some Scene {
         WindowGroup {
-            if !isLogin {
-                LoginView(isLogin: $isLogin)
-            } else {
-                ContentView().environmentObject(isCurrentUser)
-            }
+            ZStack {
+                if !isLogin {
+                    LoginView(isLogin: $isLogin)
+                } else {
+                    ContentView().environmentObject(isCurrentUser)
+                }
+            }.animation(isLogin ? .easeOut : nil)
         }
     }
 }
