@@ -28,20 +28,20 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.inSearchMode = true
                 }
+                .transition(.move(edge: .trailing))
+                .animation(.easeIn)
             
             if inSearchMode {
                 Button(action: {
-                    withAnimation(.easeInOut) {
-                        inSearchMode = false
-                        text = ""
-                        UIApplication.shared.endEditing()
-                    }
+                    inSearchMode = false
+                    text = ""
+                    UIApplication.shared.endEditing()
                 }, label: {
                     Text("Cancel")
                         .foregroundColor(.black)
                 })
                     .transition(.move(edge: .trailing))
-                    .animation(.easeInOut)
+                    .animation(.easeIn)
             }
         }
     }
@@ -49,6 +49,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""), inSearchMode: .constant(false))
+        SearchBar(text: .constant(""), inSearchMode: .constant(true))
     }
 }

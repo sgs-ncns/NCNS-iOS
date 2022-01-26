@@ -48,6 +48,7 @@ struct MainTabView: View {
         }
         .foregroundColor(Color.black)
         .accentColor(.black)
+        .animation(nil)
 //        .onAppear(perform: {
 //            if #available(iOS 15, *) {
 //                UINavigationBar.changeAppearance(clear: false)
