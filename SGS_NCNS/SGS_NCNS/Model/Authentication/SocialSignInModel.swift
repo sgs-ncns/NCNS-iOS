@@ -8,6 +8,10 @@
 import Foundation
 
 struct SocialSignInModel: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case authType = "auth_type"
+        case email
+    }
     var authType: String
     var email: String
 }
