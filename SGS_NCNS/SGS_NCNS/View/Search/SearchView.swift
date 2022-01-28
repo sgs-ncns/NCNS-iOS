@@ -25,7 +25,7 @@ struct SearchView: View {
             }.padding(.top, 1)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarHidden(true)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

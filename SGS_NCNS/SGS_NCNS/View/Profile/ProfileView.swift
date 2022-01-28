@@ -15,7 +15,7 @@ struct ProfileView: View {
             .navigationTitle("User")
             .padding(0.0)
             .navigationBarTitleDisplayMode(.inline)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

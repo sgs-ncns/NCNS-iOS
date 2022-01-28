@@ -14,7 +14,7 @@ struct NotificationsView: View {
             .navigationTitle("Notifications")
             .padding(0.0)
             .navigationBarTitleDisplayMode(.inline)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

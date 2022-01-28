@@ -62,7 +62,7 @@ struct UploadPostView: View {
                 Spacer()
             }.navigationTitle("Upload")
                 .navigationBarTitleDisplayMode(.inline)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
