@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import Combine
 import AuthenticationServices
 import JWTDecode
 
 final class AppleUserAuthModel: ObservableObject {
     @Published var userSocialLogin = SocialSignInModel(authType: "APPLE", email: "")
+    @Published var isLoginSuccess: Bool = false
     
     init() {
         
@@ -23,5 +25,26 @@ final class AppleUserAuthModel: ObservableObject {
         
         self.userSocialLogin.email = emailAddress as? String ?? ""
         print("AuthType: \(userSocialLogin.authType), user EmailAddress: \(userSocialLogin.email)")
+        
+        requestSocialLogin(data: userSocialLogin)
+    }
+    
+    private var bag = Set<AnyCancellable>()
+}
+
+extension AppleUserAuthModel {
+    func requestSocialLogin(data: SocialSignInModel) {
+        APIRequest.shared.requestSocialLogin(data: data)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
+                if let response = try? $0.map(ResponseModel<[String:String]>.self) {
+                    if response.responseCode == "200" {
+                        print("성공!! : \(response)")
+                        self?.isLoginSuccess = true
+                    }
+                } else {
+                    print("실패...")
+                }
+            })
+            .store(in: &bag)
     }
 }

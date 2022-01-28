@@ -58,6 +58,7 @@ struct LoginView: View {
                     // sign in
                     Button {
                         viewModel.login()
+                        UIApplication.shared.endEditing()
                     } label: {
                         Text("Sign In")
                     }
@@ -73,8 +74,13 @@ struct LoginView: View {
                     VStack(spacing: 10) {
                         GoogleSignInButtonWrapper(handler: googleUserAuthModel.signIn)
                             .frame(width: 280, height: 44, alignment: .center)
+                            .onReceive(googleUserAuthModel.$isLoginSuccess) {
+                                if $0 {
+                                    isLogin = true
+                                }
+                            }
                         
-                        AppleSignInButtonWrapper()
+                        AppleSignInButtonWrapper(isLogin: $isLogin)
                             .frame(width: 280, height: 44, alignment: .center)
                         
                     }
