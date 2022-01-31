@@ -15,13 +15,14 @@ struct FeedView: View {
                     ForEach(1 ..< 10) { _ in
                         FeedCell()
                     }
+                    
                 }
             }
             .navigationTitle("")
             .padding(0.0)
             .navigationBarItems(leading:Image("IGlogo"))
             .navigationBarTitleDisplayMode(.inline)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

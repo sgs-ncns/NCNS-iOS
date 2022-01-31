@@ -6,6 +6,20 @@
 //
 
 import UIKit
+
+// TabBar 내부 아이콘 Inset 설정
+extension UITabBarController {
+    override open func viewDidLayoutSubviews() {
+        let items = tabBar.items
+                for item in items!
+                {
+                    if item.title == nil {
+                        item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+                    }
+                }
+    }
+}
+
 extension UIApplication {
     class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
