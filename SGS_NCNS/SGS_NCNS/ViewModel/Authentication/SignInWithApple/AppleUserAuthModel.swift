@@ -14,8 +14,20 @@ final class AppleUserAuthModel: ObservableObject {
     @Published var userSocialLogin = SocialSignInModel(authType: "APPLE", email: "")
     @Published var isLoginSuccess: Bool = false
     
+    private var bag = Set<AnyCancellable>()
+    
     init() {
         
+    }
+    
+    func checkAppleLoginResult(result: Result<ASAuthorization, Error>) {
+        switch result {
+        case .success(let authResults):
+            print("Authorization successful")
+            self.checkUserInfo(result: authResults)
+        case .failure(let error):
+            print("Authorization failed: " + error.localizedDescription)
+        }
     }
     
     func checkUserInfo(result: (ASAuthorization)) {
@@ -29,7 +41,7 @@ final class AppleUserAuthModel: ObservableObject {
         requestSocialLogin(data: userSocialLogin)
     }
     
-    private var bag = Set<AnyCancellable>()
+    
 }
 
 extension AppleUserAuthModel {

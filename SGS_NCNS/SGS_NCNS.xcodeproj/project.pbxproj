@@ -147,10 +147,10 @@
 		3310FFD127866F3800C157DC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3310FFE2278674EC00C157DC /* Profile */,
 				3310FFE3278674F300C157DC /* Authentication */,
 				3310FFE4278674F800C157DC /* Notifications */,
 				3310FFE52786750100C157DC /* Feed */,
+				3310FFE2278674EC00C157DC /* Profile */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

@@ -20,13 +20,7 @@ struct AppleSignInButtonWrapper: View {
                 request.requestedScopes = [.fullName, .email]
             },
             onCompletion: { result in
-                switch result {
-                case .success(let authResults):
-                    print("Authorization successful")
-                    appleUserAuthModel.checkUserInfo(result: authResults)
-                case .failure(let error):
-                    print("Authorization failed: " + error.localizedDescription)
-                }
+                appleUserAuthModel.checkAppleLoginResult(result: result)
             }
         )
             .onReceive(appleUserAuthModel.$isLoginSuccess) {
