@@ -22,5 +22,6 @@ struct ProfileSubView: View {
 struct ProfileSubView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSubView()
+            .environmentObject(isCurrentUser)
     }
 }

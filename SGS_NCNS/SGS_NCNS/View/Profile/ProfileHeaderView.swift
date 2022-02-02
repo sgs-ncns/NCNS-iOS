@@ -55,5 +55,6 @@ struct ProfileHeaderView: View {
 struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHeaderView()
+            .environmentObject(isCurrentUser)
     }
 }

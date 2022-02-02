@@ -15,7 +15,7 @@ struct FeedContentView: View {
             HStack {
                 { Text("User")
                     .font(.system(size: 13, weight: .semibold)) + Text(" ") +
-                Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
+                Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!! SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
                 }()
                     .lineLimit(1)
                     .multilineTextAlignment(.leading)
@@ -28,8 +28,8 @@ struct FeedContentView: View {
         } else {
             // 더 보기 눌렀을 때 뷰
             { Text("User")
-                .font(.system(size: 13, weight: .semibold)) + Text(" ") +
-            Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
+                    .font(.system(size: 13, weight: .semibold)) + Text(" ") +
+            Text("SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!! SmileGate Stove Dev Camp. 스마일게이트 스토브 화이팅!!!")
             }()
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)

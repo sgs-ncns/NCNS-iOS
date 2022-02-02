@@ -119,6 +119,12 @@ struct FeedCell: View {
                     .foregroundColor(.gray)
             }).padding([.leading, .trailing], 15)
                 .padding([.top, .bottom], 5)
+            
+            Text("22시간 전")
+                .font(.system(size: 13))
+                .foregroundColor(.gray)
+                .padding([.leading, .trailing], 15)
+                .padding([.top, .bottom], 5)
         }
     }
 }
