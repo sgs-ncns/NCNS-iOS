@@ -15,7 +15,6 @@ struct FeedView: View {
                     ForEach(1 ..< 10) { _ in
                         FeedCell()
                     }
-                    
                 }
             }
             .navigationTitle("")

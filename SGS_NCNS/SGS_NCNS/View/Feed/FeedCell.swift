@@ -104,7 +104,7 @@ struct FeedCell: View {
             // comment
             ZStack (alignment: .topLeading) {
                 Button(action: {
-                    self.viewMore = true
+//                    self.viewMore = true
                 }, label: {
                     FeedContentView(viewMore: $viewMore)
                 })

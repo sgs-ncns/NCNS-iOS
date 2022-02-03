@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension String {
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+}
 // TabBar 내부 아이콘 Inset 설정
 extension UITabBarController {
     override open func viewDidLayoutSubviews() {

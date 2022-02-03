@@ -9,7 +9,20 @@ import SwiftUI
 
 struct CommentView: View {
     var body: some View {
-        Text("it's commentView")
+        ScrollView {
+            VStack {
+                CommentHeaderView()
+                Divider()
+                
+                /// cell
+
+                CommentCell()
+                CommentCell()
+                CommentCell()
+                CommentCell()
+                CommentCell()
+            }
+        }
     }
 }
 
