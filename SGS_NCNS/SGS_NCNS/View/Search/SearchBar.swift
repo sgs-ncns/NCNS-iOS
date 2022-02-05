@@ -8,15 +8,30 @@
 import SwiftUI
 
 struct SearchBar: View {
+    @State var animate = false
     @Binding var text: String
     @Binding var inSearchMode: Bool
     var body: some View {
         HStack {
-            TextField("Search", text: $text)
+            TextField("Search", text: $text, onEditingChanged: { (editingChanged) in
+                if editingChanged {
+                    self.inSearchMode = true
+                } else {
+//                    self.inSearchMode = false
+                }
+            })
+                .onAppear() {
+                    self.animate = true
+                }
                 .padding(8)
                 .padding(.horizontal, 24)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
+                .transition(.move(edge: .top))
+                .animation(.easeIn, value: animate)
+//                .onAppear() {
+//                    self.animate.toggle()
+//                }
                 .overlay(
                     HStack{
                         Image(systemName: "magnifyingglass")
@@ -25,11 +40,7 @@ struct SearchBar: View {
                                 .padding(.leading, 8)
                     }
                 )
-                .onTapGesture {
-                    self.inSearchMode = true
-                }
-                .transition(.move(edge: .trailing))
-                .animation(.easeIn)
+                
             
             if inSearchMode {
                 Button(action: {
@@ -49,6 +60,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""), inSearchMode: .constant(true))
+        SearchBar(text: .constant(""), inSearchMode: .constant(false))
     }
 }
