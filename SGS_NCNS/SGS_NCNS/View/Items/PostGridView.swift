@@ -9,17 +9,72 @@ import SwiftUI
 
 struct PostGridView: View {
     // 한 화면에 3개
-    private let items = [GridItem(), GridItem(), GridItem()]
-    private let width = UIScreen.screenWidth / 3
+    private let items = [
+        GridItem(.flexible(minimum: 40)),
+        GridItem(.flexible(minimum: 40)),
+        GridItem(.flexible(minimum: 40)),]
+    private let width = (UIScreen.screenWidth - 4) / 3
     
     var body: some View {
-        LazyVGrid(columns: items, spacing: 2, content: {
-            ForEach(1 ..< 10) {_ in
-                Image("Exprofile_punch")
-                    .resizable()
-                    .frame(width: width, height: width)
-            }
-        })
+        LazyVGrid(columns: items, alignment: .center) {
+//            ForEach(model.imageNames, id:\.self) { item in
+//                
+//            }
+//            NavigationLink(destinat ion: <#T##() -> _#>, label: <#T##() -> _#>)
+            Image("img1")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            
+            Image("img6")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img2")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img3")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img4")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img1")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            
+            Image("img6")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img2")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img3")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            Image("img4")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: width)
+                .clipped()
+            
+        }
     }
 }
 

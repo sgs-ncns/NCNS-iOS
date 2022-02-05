@@ -11,6 +11,10 @@ struct MainTabView: View {
     @EnvironmentObject var isCurrentUser: MySettings
     @State private var isHidden: Bool = false
     
+    init() {
+        UITabBar.changeAppearance(clear: false)
+    }
+    
     var body: some View {
         TabView {
             FeedView()
