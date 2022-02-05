@@ -14,12 +14,13 @@ struct FeedCell: View {
         VStack(alignment: .leading, spacing: 0) {
             // profile
             HStack {
-                Image("Exprofile_aim")
+                Image("img3")
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 32, height: 32)
                     .clipShape(Circle())
                     .padding(.leading, 10)
-                
+                  
                 
                 Text("User ID")
                     .font(.system(size: 13, weight: .semibold))
@@ -38,13 +39,15 @@ struct FeedCell: View {
             Divider()
                 .frame(height: 1)
                 .background(Color(.systemGray6))
-            
-            // feed
-            Image("Exprofile_reflect")
-                .resizable()
-                .scaledToFill()
-                .frame(maxHeight: 440)
-                .clipped()
+            VStack(alignment: .center) {
+//                Rectangle()
+                // feed
+                Image("img6")
+                    .resizable()
+                    .scaledToFit()
+    //                .frame(maxHeight: 440)
+                    .clipped()
+            }.frame(maxWidth: .infinity)
             
             // button
             HStack() {
@@ -102,16 +105,19 @@ struct FeedCell: View {
             .padding(.bottom, 5)
             
             // comment
-            ZStack (alignment: .topLeading) {
-                Button(action: {
-//                    self.viewMore = true
-                }, label: {
-                    FeedContentView(viewMore: $viewMore)
-                })
-                    .foregroundColor(.black)
-                
-            }
-            .padding([.leading, .trailing], 15)
+//            ZStack (alignment: .topLeading) {
+//                Button(action: {
+////                    self.viewMore = true
+//                }, label: {
+//                    FeedContentView(viewMore: $viewMore)
+//                })
+//                    .foregroundColor(.black)
+//
+//            }
+//            .padding([.leading, .trailing], 15)
+            
+            FeedContentView(viewMore: $viewMore)
+                .padding([.leading, .trailing], 15)
             
             NavigationLink(destination: CommentView(), label: {
                 Text("댓글 ~개 모두 보기")

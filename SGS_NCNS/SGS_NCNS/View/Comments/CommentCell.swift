@@ -31,7 +31,7 @@ struct CommentCell: View {
 ////                    .padding([.leading, .trailing], 10)
 //                    .padding([.top, .bottom], 5)
 //            }
-                CommentContentFilterView(vm: CommentViewModel("하이하이 가나다 라마바 아자차카타파하 쓰뜨링~ #하이 @나나"), height: $height)
+                CommentContentFilterView(vm: CommentViewModel("하이하이 가나다 라마바 아자차카타파하 쓰뜨링~ #하이 @나나", user: "starshan9555"), height: $height)
                 Text("22시간 전")
                     .font(.system(size: 13))
                     .foregroundColor(.gray)

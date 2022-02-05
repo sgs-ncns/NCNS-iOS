@@ -13,8 +13,9 @@ class CommentViewModel: ObservableObject {
     private var splitText: [String]
     
     /// 전체 String 받아와서 split 진행
-    init(_ text: String) {
+    init(_ text: String, user: String) {
         self.splitText = text.split(separator: " ", omittingEmptySubsequences: false).map { "\($0) " }
+        self.splitText.insert("\(user) ", at: 0)
         
         if text.hasPrefix(" ") {
             self.splitText = [" "] + self.splitText

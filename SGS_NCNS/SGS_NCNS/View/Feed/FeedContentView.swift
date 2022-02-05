@@ -13,11 +13,11 @@ struct FeedContentView: View {
     var body: some View {
         if !viewMore {
             // 더 보기 누르기 전 뷰
-            FeedContentFilterView(vm: FeedContentViewModel("한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁 데브데브캠프 캠프 #데브캠프 @한상혁 #가나다 @한상혁 한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁"), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel("한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁 데브데브캠프 캠프 #데브캠프 @한상혁 #가나다 @한상혁 한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁 테스트", user: "Contea95"), height: $height)
 
         } else {
             // 더 보기 눌렀을 때 뷰
-            FeedContentFilterView(vm: FeedContentViewModel("한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁 데브데브캠프 캠프 #데브캠프 @한상혁 #가나다 @한상혁 한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁"), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel("한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁 데브데브캠프 캠프 #데브캠프 @한상혁 #가나다 @한상혁 한상혁 스마일 데브 캠프 #데브캠프 @한상혁 #가나다 @한상혁", user: "Contea95"), height: $height)
 
         }
     }
