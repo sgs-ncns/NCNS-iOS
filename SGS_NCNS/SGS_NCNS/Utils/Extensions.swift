@@ -75,6 +75,7 @@ extension UITabBar {
             appearance.configureWithDefaultBackground()
         }
         
+//        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }

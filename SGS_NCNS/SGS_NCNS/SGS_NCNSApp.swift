@@ -24,6 +24,10 @@ struct SGS_NCNSApp: App {
     @StateObject var appleUserAuthModel: AppleUserAuthModel = AppleUserAuthModel()
     @State var isLogin = false
     
+    init() {
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -37,5 +41,11 @@ struct SGS_NCNSApp: App {
                 }
             }.animation(isLogin ? .easeOut : nil)
         }
+    }
+}
+
+private extension SGS_NCNSApp {
+    func setupUserKeychain() {
+        
     }
 }
