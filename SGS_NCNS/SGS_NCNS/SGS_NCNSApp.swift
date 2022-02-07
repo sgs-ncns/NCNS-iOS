@@ -27,7 +27,7 @@ struct SGS_NCNSApp: App {
     init() {
         
     }
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ZStack {
