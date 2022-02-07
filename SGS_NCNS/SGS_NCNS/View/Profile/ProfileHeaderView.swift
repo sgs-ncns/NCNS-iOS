@@ -12,7 +12,7 @@ struct ProfileHeaderView: View {
     @EnvironmentObject var isCurrentUser: MySettings
     
     // 목업으로 팔로우 안한걸로 체크 -> 나중에 빼기
-    var isFollowed = false
+    @State var isFollowed = true
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -80,19 +80,23 @@ struct ProfileHeaderView: View {
                                         .stroke(Color.gray, lineWidth: isFollowed ? 1 : 0)
                                 )
                         }).cornerRadius(3)
-                        
-                        Button(action: {
-                            
-                        }, label: {
-                            Text("Etc")
-                                .font(.system(size: 15, weight: .semibold))
-                                .frame(width: 172, height: 29)
-                                .foregroundColor(.black)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 3)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                        })
+                        if isFollowed {
+                            Button(action: {
+                                
+                            }, label: {
+                                Text("KKanbu")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .frame(width: 172, height: 29)
+                                    .foregroundColor(.black)
+                                    .background(Color("KanbuIndicator"))
+                                    .cornerRadius(3)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 3)
+                                            .stroke(Color.gray, lineWidth: isFollowed ? 0 : 1)
+                                    )
+                            })
+                                .disabled(isFollowed ? false : true)
+                        }
                     }
                 }
                 
