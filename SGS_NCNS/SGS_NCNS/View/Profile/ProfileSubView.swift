@@ -14,6 +14,7 @@ struct ProfileSubView: View {
                 ProfileHeaderView()
                 
                 PostGridView()
+                    .frame(width: UIScreen.screenWidth)
             }.padding(.top)
         }
     }

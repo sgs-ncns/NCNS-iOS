@@ -29,9 +29,6 @@ struct SearchBar: View {
                 .cornerRadius(8)
                 .transition(.move(edge: .top))
                 .animation(.easeIn, value: animate)
-//                .onAppear() {
-//                    self.animate.toggle()
-//                }
                 .overlay(
                     HStack{
                         Image(systemName: "magnifyingglass")

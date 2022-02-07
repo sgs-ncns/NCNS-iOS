@@ -31,7 +31,7 @@ struct SearchView: View {
                         
                         Divider()
                             .padding(0)
-                    }
+                    }.transition(.asymmetric(insertion: AnyTransition.opacity.animation(.easeInOut(duration: 0.2)), removal: AnyTransition.opacity.animation(.easeInOut(duration: 0.2))))
                 }
                 GeometryReader { geometry in
                     ScrollView {
