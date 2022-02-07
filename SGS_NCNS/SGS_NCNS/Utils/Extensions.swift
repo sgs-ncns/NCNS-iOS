@@ -58,7 +58,6 @@ extension UINavigationBar {
             } else {
                 appearance.configureWithDefaultBackground()
             }
-            
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
