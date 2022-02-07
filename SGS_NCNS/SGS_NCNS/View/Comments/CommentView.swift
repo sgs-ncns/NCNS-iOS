@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct CommentView: View {
+    @State var commentText = ""
+    @State var isSearchMode = false
     var body: some View {
-        ScrollView {
-            VStack {
-                CommentHeaderView()
-                Divider()
-                
-                /// cell
+        VStack {
+            ScrollView {
+                VStack {
+                    CommentHeaderView()
+                    Divider()
+                    
+                    /// cell
 
-                CommentCell()
-                CommentCell()
-                CommentCell()
-                CommentCell()
-                CommentCell()
+                    CommentCell()
+                    CommentCell()
+                    CommentCell()
+                    CommentCell()
+                    CommentCell()
+                }
             }
+            
+            Spacer()
+            CommentCreateView(text: $commentText, inSearchMode: $isSearchMode, placeholder: Text("댓글 달기..."), imageName: "img6")
+                
         }
     }
 }
@@ -31,3 +39,4 @@ struct CommentView_Previews: PreviewProvider {
         CommentView()
     }
 }
+

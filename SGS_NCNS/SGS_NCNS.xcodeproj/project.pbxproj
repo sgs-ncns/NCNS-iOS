@@ -71,7 +71,6 @@
 		33C0EF45277AF4FE00ECE5A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */; };
 		33C0EF48277AF4FE00ECE5A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */; };
 		33C3DCD827AFCD3300D33F80 /* CommentCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C3DCD727AFCD3300D33F80 /* CommentCreateView.swift */; };
-		33C3DCDF27B0433000D33F80 /* FullScreenCoverCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C3DCDE27B0433000D33F80 /* FullScreenCoverCompat.swift */; };
 		33D462DE27ACE7F0002DE5A4 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D462DD27ACE7F0002DE5A4 /* TabsView.swift */; };
 		33E9EFF6279806FB00E582AF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E9EFF5279806FB00E582AF /* CommentView.swift */; };
 		33F071D0277CCE2000D54D12 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 33F071CF277CCE2000D54D12 /* Kingfisher */; };
@@ -140,7 +139,6 @@
 		33C0EF44277AF4FE00ECE5A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33C0EF47277AF4FE00ECE5A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33C3DCD727AFCD3300D33F80 /* CommentCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCreateView.swift; sourceTree = "<group>"; };
-		33C3DCDE27B0433000D33F80 /* FullScreenCoverCompat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenCoverCompat.swift; sourceTree = "<group>"; };
 		33D462DD27ACE7F0002DE5A4 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		33E9EFF5279806FB00E582AF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		566B2BCA5484F230B3877D28 /* Pods-SGS_NCNS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGS_NCNS.release.xcconfig"; path = "Target Support Files/Pods-SGS_NCNS/Pods-SGS_NCNS.release.xcconfig"; sourceTree = "<group>"; };
@@ -315,7 +313,6 @@
 				33BAB96227AB9F1500A92F43 /* CommentContentFilterView.swift */,
 				33D462DD27ACE7F0002DE5A4 /* TabsView.swift */,
 				330F530D27AEA01B00075EF6 /* ImagePageView.swift */,
-				33C3DCDE27B0433000D33F80 /* FullScreenCoverCompat.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -636,7 +633,6 @@
 				33590F3027AA2DC9007C7C81 /* HashTagView.swift in Sources */,
 				33363E7627A0E78100C44614 /* UserSignUpModel.swift in Sources */,
 				33838BD0279484C800196248 /* ResetPasswordView.swift in Sources */,
-				33C3DCDF27B0433000D33F80 /* FullScreenCoverCompat.swift in Sources */,
 				33838BCE279484B400196248 /* RegistrationView.swift in Sources */,
 				33838BC12794414600196248 /* UploadPostView.swift in Sources */,
 				33C3DCD827AFCD3300D33F80 /* CommentCreateView.swift in Sources */,
