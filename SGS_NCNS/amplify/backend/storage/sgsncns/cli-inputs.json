@@ -1,0 +1,18 @@
+{
+  "resourceName": "sgsncns",
+  "policyUUID": "44d16350",
+  "bucketName": "sgsncns",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger8f26c83a",
+  "groupAccess": {}
+}
