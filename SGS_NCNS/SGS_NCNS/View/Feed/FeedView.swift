@@ -14,9 +14,8 @@ struct FeedView: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(1 ..< 10) { _ in
-                        FeedCell()
-                    }
+                    FeedCell(path: "test1/")
+                    FeedCell(path: "test2/")
                 }
             }
             .navigationTitle("")

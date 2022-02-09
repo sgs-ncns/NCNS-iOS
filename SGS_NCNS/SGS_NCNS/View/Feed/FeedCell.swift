@@ -11,10 +11,16 @@ struct FeedCell: View {
     @State var viewMore = false
     @State var isLiked = false
     @State private var isPresented = false
+    var path: String
+    
+    init(path: String) {
+        self.path = path
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             
-            ImagePageView()
+            ImagePageView(path: path)
                 
             // Like
             HStack {
@@ -30,15 +36,6 @@ struct FeedCell: View {
             FeedContentView(viewMore: $viewMore)
                 .padding([.leading, .trailing], 15)
             
-//            Button("댓글 ~개 모두 보기") {
-//                isPresented = true
-//            }
-//                .font(.system(size: 13))
-//                .foregroundColor(.gray)
-//                .padding([.leading, .trailing], 15)
-//                .padding([.top, .bottom], 5)
-//                .fullScreenCover(isPresented: $isPresented, content: CommentView.init)
-//
             NavigationLink(destination: CommentView(), label: {
                 Text("댓글 ~개 모두 보기")
                     .font(.system(size: 13))
@@ -58,6 +55,6 @@ struct FeedCell: View {
 
 struct FeedCell_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCell()
+        FeedCell(path: "test1/")
     }
 }

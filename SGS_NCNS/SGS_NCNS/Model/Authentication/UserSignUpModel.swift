@@ -9,7 +9,7 @@ import Foundation
 
 struct UserSignUpModel: Codable {
     var email: String
-    var profileName: String
     var nickname: String
+    var accountName: String
     var password: String
 }

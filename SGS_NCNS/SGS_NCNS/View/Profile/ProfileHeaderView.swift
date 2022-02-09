@@ -92,7 +92,7 @@ struct ProfileHeaderView: View {
                                     .cornerRadius(3)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 3)
-                                            .stroke(Color.gray, lineWidth: isFollowed ? 0 : 1)
+                                            .stroke(Color.gray, lineWidth: isFollowed ? 1 : 1)
                                     )
                             })
                                 .disabled(isFollowed ? false : true)
