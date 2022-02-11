@@ -134,10 +134,12 @@ struct PageViewCell: View {
                     }
                         .frame(height: 50), alignment: .bottom)
             } else {
-                GeometryReader { geometry in
-                    Text("Loading")
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                }
+                
+                    VStack {
+                        Text("Loading")
+                    }
+                    
+                
             }
         }
     }

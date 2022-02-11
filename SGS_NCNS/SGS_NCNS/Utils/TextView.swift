@@ -8,9 +8,11 @@ import SwiftUI
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
+    @Binding var hashTag: [String]
+    @Binding var humanTag: [String]
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, hashTag: hashTag, humanTag: humanTag)
     }
 
     func makeUIView(context: Context) -> UITextView {
@@ -33,10 +35,28 @@ struct TextView: UIViewRepresentable {
 
     class Coordinator : NSObject, UITextViewDelegate {
 
+        private var splitText: [String] = []
         var parent: TextView
+        var hashTag: [String]
+        var humanTag: [String]
+        
 
-        init(_ uiTextView: TextView) {
+        init(_ uiTextView: TextView, hashTag: [String], humanTag: [String]) {
             self.parent = uiTextView
+            self.hashTag = hashTag
+            self.humanTag = humanTag
+        }                             
+        
+        func TagChecker(_ sliceText: String) {
+            self.splitText = sliceText.split(separator: " ").map{ "\($0)"}
+            
+            splitText.enumerated().forEach {
+                if $1.hasPrefix("#") {
+                    hashTag.append($1)
+                } else if $1.hasPrefix("@") {
+                    humanTag.append($1)
+                }
+            }
         }
 
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -46,6 +66,7 @@ struct TextView: UIViewRepresentable {
         func textViewDidChange(_ textView: UITextView) {
             print("text now: \(String(describing: textView.text!))")
             self.parent.text = textView.text
+            TagChecker(textView.text)
         }
     }
 }
