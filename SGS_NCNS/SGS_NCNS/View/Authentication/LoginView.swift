@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct LoginView: View {
     @EnvironmentObject var googleUserAuthModel: GoogleUserAuthModel
+//    @EnvironmentObject var userSignUpViewModel: UserSignUpViewModel
     @StateObject private var viewModel = LoginViewModel()
+    @State var showToast = false
     @Binding var isLogin: Bool
     
     var body: some View {
@@ -98,7 +101,7 @@ struct LoginView: View {
                     
                     NavigationLink(
                         destination:
-                            RegistrationView()
+                            UserSignUpView(userSignUpViewModel: UserSignUpViewModel(), showToast: $showToast)
                             .navigationBarHidden(true),
                         label: {
                             HStack {
@@ -110,6 +113,9 @@ struct LoginView: View {
                     }).padding(.bottom, 16)
                 }
                 .padding(.top, -44)
+            }
+            .toast(isPresenting: $showToast){
+                AlertToast(displayMode: .banner(.slide), type: .regular, title: "👋 Sign Up Complete!", subTitle: "Try Login First!")
             }
         }
     }
