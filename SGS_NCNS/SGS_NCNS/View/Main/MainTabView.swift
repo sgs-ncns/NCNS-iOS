@@ -29,7 +29,7 @@ struct MainTabView: View {
                     .renderingMode(.template)
             }
             
-            UploadPostView()
+            UploadPostView(uploadPostViewModel: UploadPostViewModel())
                 .tabItem {
                     Image("Add")
                         .renderingMode(.template)

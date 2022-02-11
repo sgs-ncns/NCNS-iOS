@@ -13,7 +13,7 @@ struct FeedView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack {
+                VStack {
                     FeedCell(path: "test1/")
                     FeedCell(path: "test2/")
                 }

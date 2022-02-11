@@ -8,6 +8,9 @@
 import SwiftUI
 import Firebase
 import UserNotifications
+import Amplify
+import AWSS3StoragePlugin
+import AWSCognitoAuthPlugin
 
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
@@ -101,6 +104,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         //  Apple 푸시 알림 서버스를 통해 원격 알림을 수신하도록 등록
         application.registerForRemoteNotifications()
+        
+        do {
+            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+//            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels())
+            try Amplify.add(plugin: AWSS3StoragePlugin())
+            try Amplify.configure()
+            print("Amplify configured with storage plugin")
+        } catch {
+            print("Failed to initialize Amplify with \(error)")
+        }
         return true
     }
     

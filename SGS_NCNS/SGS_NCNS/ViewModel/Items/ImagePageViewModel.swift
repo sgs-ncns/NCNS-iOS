@@ -28,10 +28,8 @@ class ImagePageViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] in
                 $0.items.forEach { item in
-                    print("\(item.key)")
                     self?.urls.append(URL(string: "https://sgsncns130837-dev-resized.s3.ap-northeast-2.amazonaws.com/public/\(item.key)")!)
                 }
-                print("\(self?.urls)")
             })
     }
 }
