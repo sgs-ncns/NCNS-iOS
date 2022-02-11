@@ -8,8 +8,15 @@
 import Foundation
 
 struct UserSignUpModel: Codable {
-    var email: String
-    var nickname: String
-    var accountName: String
-    var password: String
+    private enum CodingKeys: String, CodingKey {
+        case email
+        case nickname
+        case accountName = "account_name"
+        case password
+    }
+    var email: String?
+    var nickname: String?
+    var accountName: String?
+    var password: String?
+    
 }
