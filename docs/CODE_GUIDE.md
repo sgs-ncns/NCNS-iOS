@@ -60,9 +60,12 @@ HStack {
 
 ### 구현 화면
 * 피드 화면
-![FeedTag](./sources/FeedTag.png) 
+  
+  <img src= "./sources/FeedTag.png" width = 50%>
+
 * 댓글 화면
-![tagExample1](./sources/CommentTag.png)
+  
+  <img src= "./sources/CommentTag.png" width = 50%>
 ---
 ## 💾 S3 접근 방식이 특이해요(with Amplify)
 ### S3 접근 방식
