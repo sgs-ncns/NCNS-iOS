@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ 일반 커스텀 텍스트필드입니다.
+ */
+
 struct LoginCustomTextField: View {
     @Binding var text: String
     let placeholder: Text

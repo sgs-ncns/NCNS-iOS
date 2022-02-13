@@ -10,16 +10,19 @@ import Combine
 import AuthenticationServices
 import JWTDecode
 
+// Apple OAuth 로그인을 위한 ViewModel
+
 final class AppleUserAuthModel: ObservableObject {
-    @Published var userSocialLogin = SocialSignInModel(authType: "APPLE", email: "")
+    @Published var userSocialLogin: SocialSignInModel
     @Published var isLoginSuccess: Bool = false
     
     private var bag = Set<AnyCancellable>()
-    
+    // Apple계정으로 로그인한다는 정보를 서버에게 주기 위해 authType을 APPLE로 설정하고 초기화
     init() {
-        
+        self.userSocialLogin = SocialSignInModel(authType: "APPLE", email: "")
     }
     
+    // OAtuh를 통해 Apple계정 로그인 후 결과 return
     func checkAppleLoginResult(result: Result<ASAuthorization, Error>) {
         switch result {
         case .success(let authResults):
@@ -30,9 +33,13 @@ final class AppleUserAuthModel: ObservableObject {
         }
     }
     
+    /*
+     - 서버에게 로그인한 authType과 유저 email 정보를 전달
+     - 해당 이메일이 회원가입된 이메일인지 확인하고, 회원가입된 회원이면 로그인 후 피드화면으로 가기, 비회원이면 이메일 그대로 회원가입으로 이동(추가예정)
+     */
     func checkUserInfo(result: (ASAuthorization)) {
         guard let credentials = result.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken, let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
-
+        
         let emailAddress = try! decode(jwt: identityTokenString).body["email"]!
         
         self.userSocialLogin.email = emailAddress as? String ?? ""
@@ -40,8 +47,6 @@ final class AppleUserAuthModel: ObservableObject {
         
         requestSocialLogin(data: userSocialLogin)
     }
-    
-    
 }
 
 extension AppleUserAuthModel {

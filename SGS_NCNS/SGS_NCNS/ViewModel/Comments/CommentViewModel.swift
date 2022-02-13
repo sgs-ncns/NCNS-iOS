@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+/*
+ 댓글 내용 중 일반 텍스트, 해시태그, 인물태그를 나누는 ViewModel입니다.
+ 피드 전체 내용인 String을 공백으로 자르고 자른 String에 뷰 처리(NavigationLink, TextView)를 진행합니다.
+ 잘라진 String에 Prefix를 확인해서 #, @가 있으면 해시태그, 인물태그로 인식합니다.
+ */
+
 class CommentViewModel: ObservableObject {
     @Published var feedContent: [Comment<Text>] = []
     @EnvironmentObject var isCurrentUser: MySettings
     private var splitText: [String]
     
-    /// 전체 String 받아와서 split 진행
+    // 전체 String 받아와서 split 진행
     init(_ text: String, user: String) {
         self.splitText = text.split(separator: " ", omittingEmptySubsequences: false).map { "\($0) " }
         self.splitText.insert("\(user) ", at: 0)

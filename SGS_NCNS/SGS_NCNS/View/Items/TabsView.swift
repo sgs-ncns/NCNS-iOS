@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+/*
+ SwiftUI에 없는 상단에 위치한 커스텀 탭바 입니다.
+ 재사용성을 위해 tabs를 받아 탭을 구성합니다.
+ 자연스러운 애니메이션 처리를 위해 selection, preSelection을 Binding해서 사용합니다.
+ */
+
 struct TabsView<Label: View>: View {
     @Binding var tabs: [String] // tab title
     @Binding var preSelection: Int
@@ -40,7 +46,7 @@ struct TabsView<Label: View>: View {
                             .frame(height: 1)
                             .foregroundColor(isSelected ? underlineColor : .clear)
                             .padding(.top, 2)
-                            .transition(.move(edge: .trailing)), alignment: .bottomLeading
+                            .transition(AnyTransition.opacity.animation(.easeInOut)), alignment: .bottomLeading
                 )
                 
         }

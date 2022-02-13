@@ -8,6 +8,13 @@
 import SwiftUI
 import Kingfisher
 
+/*
+ 피드에서 여러 이미지를 보여주는 ImagePageView입니다.
+ ImagePageViewModel에서 저장한 이미지 객체 URL 배열인 urls를 받아와 이미지를 스크롤뷰로 보여줍니다.
+ KingFisher 라이브러리를 통해 이미지를 불러옴과 동시에 url을 캐시에 저장합니다.
+ 불러온 적이 있는 url이면 캐시에 저장된 이미지를 가져오고, 없으면 url을 통해 이미지를 다운로드합니다.
+ */
+
 struct ImagePageView: View {
     var path: String
     
@@ -134,12 +141,11 @@ struct PageViewCell: View {
                     }
                         .frame(height: 50), alignment: .bottom)
             } else {
-                
-                    VStack {
-                        Text("Loading")
-                    }
-                    
-                
+                VStack {
+//                    Text("Loading")
+                    ProgressView()
+                }.frame(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width / 4) * 5 + 100)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: (UIScreen.main.bounds.width / 4) * 5 + 100)
             }
         }
     }

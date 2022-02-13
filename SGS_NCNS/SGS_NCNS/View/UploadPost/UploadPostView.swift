@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct UploadPostView: View {
+    @StateObject var uploadPostViewModel: UploadPostViewModel
     @State private var selectedImage: UIImage?
     @State var postImage: Image?
     @State var captionText = ""
     @State var imagePickerPresented = false
+    @State var hashtag: [String] = []
+    @State var humantag: [String] = []
     
     var body: some View {
         NavigationView {
@@ -30,31 +33,39 @@ struct UploadPostView: View {
                         ImagePicker(image: $selectedImage)
                     })
                 } else if let image = postImage {
-                    HStack(alignment: .top) {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 96, height: 96)
-                            .clipped()
+                    VStack {
+                        HStack(alignment: .top) {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 96, height: 96)
+                                .clipped()
+                            
+                                ZStack {
+                                    TextEditor(text: $captionText)
+                                    Text(captionText).opacity(0).padding(.all, 8)
+                                }
+                                .shadow(radius: 1)
+                                .frame(height: 96)
+                        }.padding()
                         
-    //                    TextField("Enter tour caption ...", text: $captionText)
-                        TextView(text: $captionText)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+                        Spacer()
                         
-                    }.padding()
+                        Button(action: {
+                            postImage = nil
+                            imagePickerPresented = false
+                            captionText = ""
+                            var _ = print("\(hashtag), \(humantag)")
+                        }, label: {
+                            Text("Share")
+                                .font(.system(size: 16, weight: .semibold))
+                                .frame(width: 360, height: 50)
+                                .background(Color.blue)
+                                .cornerRadius(5)
+                                .foregroundColor(.white)
+                        }).padding()
+                    }
                     
-                    Button(action: {
-                        postImage = nil
-                        imagePickerPresented = false
-                        captionText = ""
-                    }, label: {
-                        Text("Share")
-                            .font(.system(size: 16, weight: .semibold))
-                            .frame(width: 360, height: 50)
-                            .background(Color.blue)
-                            .cornerRadius(5)
-                            .foregroundColor(.white)
-                    }).padding()
                 }
                 
                 
@@ -75,6 +86,6 @@ extension UploadPostView {
 
 struct UploadPostView_Previews: PreviewProvider {
     static var previews: some View {
-        UploadPostView()
+        UploadPostView(uploadPostViewModel: UploadPostViewModel())
     }
 }

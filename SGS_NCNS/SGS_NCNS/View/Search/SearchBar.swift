@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @State var animate = false
     @Binding var text: String
     @Binding var inSearchMode: Bool
     var body: some View {
@@ -20,15 +19,11 @@ struct SearchBar: View {
 //                    self.inSearchMode = false
                 }
             })
-                .onAppear() {
-                    self.animate = true
-                }
                 .padding(8)
                 .padding(.horizontal, 24)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
-                .transition(.move(edge: .top))
-                .animation(.easeIn, value: animate)
+                .animation(.easeInOut, value: inSearchMode)
                 .overlay(
                     HStack{
                         Image(systemName: "magnifyingglass")
@@ -48,8 +43,8 @@ struct SearchBar: View {
                     Text("Cancel")
                         .foregroundColor(.black)
                 })
-                    .transition(.move(edge: .trailing))
-                    .animation(.easeIn)
+                    .transition(AnyTransition.move(edge: .trailing))
+                    .animation(.easeInOut)
             }
         }
     }

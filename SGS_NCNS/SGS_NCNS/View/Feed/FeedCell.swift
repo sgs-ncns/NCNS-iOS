@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ 피드를 구성하는 피드 셀 입니다.
+ */
+
 struct FeedCell: View {
     @State var viewMore = false
     @State var isLiked = false

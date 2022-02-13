@@ -47,7 +47,7 @@ extension APIRequest {
     func requestSocialLogin(data: SocialSignInModel) -> Future<Response, Error> {
         request(.requestSocialLogin(data: data))
     }
-    func requestLogin(data: UserSignUpModel) -> Future<Response, Error> {
-        request(.requestLogin(data: data))
+    func requestSignUp(data: UserSignUpModel) -> Future<Response, Error> {
+        request(.requestSignUp(data: data))
     }
 }

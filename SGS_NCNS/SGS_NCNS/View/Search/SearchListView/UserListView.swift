@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ 검색창을 눌렀을 때 나오는 유저 ListView입니다.
+ */
+
 struct UserListView: View {
     @EnvironmentObject var isCurrentUser: MySettings
     var body: some View {

@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+/*
+ 로그인을 하기 위한 ViewModel
+ 아이디에형식에 따라 다른 서버 API로 통신하도록 설계
+ 형식을 체크하고, Email 형식이면 EmailLogin API, 아니면 IDLogin API로 통신한다.
+ 비밀번호는 8글자이상, 적어도 1개의 문자와 특문이 들어가야함.
+*/
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
@@ -18,12 +24,13 @@ class LoginViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     
     // 이메일 형식 체크
-    let emailFormatCheck = NSPredicate(format: "SELF MATCHES %@", "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
+    let emailFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.EMAIL_FORMAT_CHECK)
     
     // 비밀번호 8글자, 적어도 1개의 문자, 1개의 특수문자
-    let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
+    let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.PASSWORD_FORMAT_CHECK)
     
     init() {
+        // 형식 체크
         $email
             .map { email in
                 return self.emailFormatCheck.evaluate(with: email)
@@ -38,6 +45,7 @@ class LoginViewModel: ObservableObject {
             .assign(to: \.isPasswordFormat, on: self)
             .store(in: &cancellableSet)
         
+        // 형식 체크에 따라서 버튼 활성화
         Publishers.CombineLatest($isEmailFormat, $isPasswordFormat)
             .map { isEmailFormat, isPasswordFormat in
                 return (!(self.email.isEmpty) && isPasswordFormat)
@@ -49,11 +57,13 @@ class LoginViewModel: ObservableObject {
     
     
     func login() {
+        // 이메일로 로그인 시도
         if isEmailFormat {
             print("Login in \(email), \(password) ")
             email = ""
             password = ""
         } else {
+            // accountName으로 시도
             print("Login in not email \(email)")
             email = ""
             password = ""
@@ -61,3 +71,9 @@ class LoginViewModel: ObservableObject {
         
     }
 }
+
+//extension LoginViewModel {
+//    func requestLogin() {
+//
+//    }
+//}

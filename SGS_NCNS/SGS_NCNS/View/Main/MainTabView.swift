@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+/*
+ 로그인 성공 시 보여주는 TabView입니다.
+ 하단에 있는 TabItem을 누르면 그 item에 맞는 뷰를 보여줍니다.
+ */
+
 struct MainTabView: View {
     @EnvironmentObject var isCurrentUser: MySettings
     @State private var isHidden: Bool = false

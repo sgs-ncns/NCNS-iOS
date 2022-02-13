@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ 검색창을 눌렀을 때 나오는 인기 ListView입니다.
+ */
+
 struct PopularListView: View {
     @EnvironmentObject var isCurrentUser: MySettings
     var body: some View {
@@ -20,7 +24,7 @@ struct PopularListView: View {
                     label: {
                     UserCell()
                         .padding(.leading)
-                })
+                    })
             }
         }
     }

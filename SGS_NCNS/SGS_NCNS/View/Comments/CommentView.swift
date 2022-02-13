@@ -17,7 +17,7 @@ struct CommentView: View {
                     CommentHeaderView()
                     Divider()
                     
-                    /// cell
+                    // cell
 
                     CommentCell()
                     CommentCell()

@@ -8,9 +8,13 @@
 import SwiftUI
 import AlertToast
 
+/*
+ 로그인 화면을 구성하는 View입니다.
+ GoogleUserAuthModel을 앱 실행 시 초기화시켜 뷰와 연결시킵니다.
+*/
+
 struct LoginView: View {
     @EnvironmentObject var googleUserAuthModel: GoogleUserAuthModel
-//    @EnvironmentObject var userSignUpViewModel: UserSignUpViewModel
     @StateObject private var viewModel = LoginViewModel()
     @State var showToast = false
     @Binding var isLogin: Bool
@@ -26,8 +30,7 @@ struct LoginView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 220, height: 100)
-                    
-                    // email
+
                     VStack(spacing: 20) {
                         LoginCustomTextField(text: $viewModel.email, placeholder: Text("Email"), imageName: "envelope")
                             .padding()
@@ -35,7 +38,6 @@ struct LoginView: View {
                             .cornerRadius(10)
                             .foregroundColor(.white)
                             .padding(.horizontal, 32)
-                    // password
                         
                         CustomSecureField(text: $viewModel.password, placeholder: Text("Password"))
                             .padding()
@@ -44,7 +46,6 @@ struct LoginView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 32)
                     }
-                    // forgotpassword
                     
                     HStack {
                         Spacer()
@@ -57,8 +58,7 @@ struct LoginView: View {
                                 .padding(.trailing, 32)
                         })
                     }
-                    
-                    // sign in
+
                     Button {
                         viewModel.login()
                         UIApplication.shared.endEditing()
@@ -101,7 +101,7 @@ struct LoginView: View {
                     
                     NavigationLink(
                         destination:
-                            UserSignUpView(userSignUpViewModel: UserSignUpViewModel(), showToast: $showToast)
+                            UserSignUpView(showToast: $showToast)
                             .navigationBarHidden(true),
                         label: {
                             HStack {

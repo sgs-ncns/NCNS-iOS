@@ -105,9 +105,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         //  Apple 푸시 알림 서버스를 통해 원격 알림을 수신하도록 등록
         application.registerForRemoteNotifications()
         
+        // Amplify 등록, Auth와 S3 Storage에 접근할 수 있는 플러그인
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
-//            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels())
             try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.configure()
             print("Amplify configured with storage plugin")

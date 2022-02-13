@@ -9,6 +9,12 @@ import Foundation
 import Combine
 import SwiftUI
 
+/*
+ 회원가입을 위한 ViewModel
+ 회원가입에는 Email, Nickname, AccountName, Password가 필수
+ Email, AccountName - 중복이 불가능하므로 Focus Out하면 서버를 통해 중복 체크
+ 비밀번호는 8자리 이상, 최소 1개의 문자와 특문 필요
+ */
 class UserSignUpViewModel: ObservableObject {
     @Published var userSignUpModel: UserSignUpModel
     @Published var email = ""
@@ -26,14 +32,13 @@ class UserSignUpViewModel: ObservableObject {
     private var bag = Set<AnyCancellable>()
     
     // 이메일 형식 체크
-    let emailFormatCheck = NSPredicate(format: "SELF MATCHES %@", "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
+    let emailFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.EMAIL_FORMAT_CHECK)
     
     // 비밀번호 8글자, 적어도 1개의 문자, 1개의 특수문자
-    let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
+    let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.PASSWORD_FORMAT_CHECK)
     
     init() {
-        userSignUpModel = UserSignUpModel()
-        userSignUpModel.accountName = email
+        self.userSignUpModel = UserSignUpModel()
         
         $email
             .map { email in
@@ -44,7 +49,6 @@ class UserSignUpViewModel: ObservableObject {
 
         $nickname
             .map { nickname in
-                print("nickname is Empty?: \(nickname.isEmpty)")
                 return !nickname.isEmpty
             }
             .sink { [weak self] values in
@@ -54,7 +58,6 @@ class UserSignUpViewModel: ObservableObject {
 
         $accountName
             .map { accountName in
-                print("accountName is Empty?: \(accountName.isEmpty)")
                 return !accountName.isEmpty
             }
             .sink { [weak self] values in
@@ -69,6 +72,7 @@ class UserSignUpViewModel: ObservableObject {
             .assign(to: \.isPasswordFormat, on: self)
             .store(in: &bag)
 
+        // Email
         Publishers.CombineLatest4($isEmailFormat, $isNicknameEmpty, $isAccountNameEmpty, $isPasswordFormat)
             .map { isEmailFormat, isNicknameEmpty, isAccountNameEmpty, isPasswordFormat in
                 return (isEmailFormat && isNicknameEmpty && isAccountNameEmpty && isPasswordFormat)
@@ -80,8 +84,8 @@ class UserSignUpViewModel: ObservableObject {
 
 extension UserSignUpViewModel {
     //회원가입
-    func requestLogin(data: UserSignUpModel) {
-        APIRequest.shared.requestLogin(data: data)
+    func requestSignUp(data: UserSignUpModel) {
+        APIRequest.shared.requestSignUp(data: data)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
                 if let response = try?
                     $0.map(ResponseModel<[String:String]>.self) {
@@ -99,6 +103,7 @@ extension UserSignUpViewModel {
             .store(in: &bag)
     }
     
+    // 텍스트 필드에 입력한 값들을 모델의 데이터구조와 데이터바인딩을 하는 함수
     func data() {
         self.userSignUpModel.email = email
         self.userSignUpModel.nickname = nickname

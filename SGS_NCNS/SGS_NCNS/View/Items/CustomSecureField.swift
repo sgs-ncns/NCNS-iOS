@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ 비밀번호를 입력하는 커스텀 텍스트필드입니다.
+ */
+
 struct CustomSecureField: View {
     @Binding var text: String
     let placeholder: Text

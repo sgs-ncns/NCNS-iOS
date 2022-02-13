@@ -10,37 +10,37 @@ import Moya
 
 enum API {
     case requestSocialLogin(data: SocialSignInModel)
-    case requestLogin(data: UserSignUpModel)
+    case requestSignUp(data: UserSignUpModel)
 }
 
 extension API: TargetType, AccessTokenAuthorizable {
-    /// 접속할 Domain 설정
+    // 접속할 Domain 설정
     var baseURL: URL {
         switch self {
         case .requestSocialLogin:
             return URL(string: "https://864aedf4-9033-4ea5-ad3c-736b182d96e2.mock.pstmn.io")!
-        case .requestLogin:
+        case .requestSignUp:
             return URL(string: "http://15.165.120.145:9000")!
         }
         
     }
     
-    /// 뒤에 붙을 Path 정의
+    // 뒤에 붙을 Path 정의
     var path: String {
         switch self {
         case .requestSocialLogin:
             return "/auth/social"
-        case .requestLogin:
+        case .requestSignUp:
             return "/api/user"
         }
     }
     
-    /// get, post, delete, fetch 등등 작업 선언
+    // get, post, delete, fetch 작업 선언
     var method: Moya.Method {
         switch self {
         case .requestSocialLogin:
             return .post
-        case .requestLogin(data: let data):
+        case .requestSignUp(data: let data):
             return .post
         }
     }
@@ -49,7 +49,7 @@ extension API: TargetType, AccessTokenAuthorizable {
         switch self {
         case .requestSocialLogin:
             return Data()
-        case .requestLogin:
+        case .requestSignUp:
             return Data()
         }
     }
@@ -61,7 +61,7 @@ extension API: TargetType, AccessTokenAuthorizable {
         case let .requestSocialLogin(data):
             print(data)
             return .requestJSONEncodable(data)
-        case let .requestLogin(data):
+        case let .requestSignUp(data):
             return .requestJSONEncodable(data)
         }
     }
@@ -71,11 +71,11 @@ extension API: TargetType, AccessTokenAuthorizable {
         return ["Content-type": "application/json; charset=UTF-8"]
     }
     
-    /// return .barear
-    /// return .none
+    // return .barear
+    // return .none
     var authorizationType: AuthorizationType? {
         switch self {
-        case .requestSocialLogin(_), .requestLogin(_):
+        case .requestSocialLogin(_), .requestSignUp(_):
             return .none
         }
     }

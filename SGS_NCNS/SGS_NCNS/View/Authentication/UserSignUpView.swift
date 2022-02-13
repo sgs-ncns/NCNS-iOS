@@ -8,8 +8,14 @@
 import SwiftUI
 import AlertToast
 
+/*
+ 회원가입 화면을 보여주는 뷰입니다.
+ FocusState를 통해 FocusOut이 되면 해당 텍스트필드(Email, AccountName)가 형식에 맞는지, 중복인지(서버와 통신하여) 확인합니다.
+ 
+ */
+
 struct UserSignUpView: View {
-    @StateObject var userSignUpViewModel: UserSignUpViewModel
+    @StateObject var userSignUpViewModel = UserSignUpViewModel()
     @FocusState private var isFocused1: Bool
     @FocusState private var isFocused2: Bool
     @Binding var showToast: Bool
@@ -40,6 +46,7 @@ struct UserSignUpView: View {
                             if !newValue {
                                 print("\(userSignUpViewModel.isEmailFormat)")
                                 // 중복체크 서버 통신 추가
+                                // request 함수 내에서 isDuplication 해서 조건에 걸어놓기
                             }
                         }
                     
@@ -56,6 +63,12 @@ struct UserSignUpView: View {
                         .cornerRadius(10)
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .stroke(// 조건추가 비어있거나 서버와 통신해서 중복인지 아닌지) ? .clear : Color.red)
+//                                .foregroundColor(.clear)
+//                                .padding(.horizontal, 32)
+//                        )
                         .focused($isFocused2)
                         .onChange(of: isFocused2) { newValue in
                             if !newValue {
@@ -75,7 +88,8 @@ struct UserSignUpView: View {
                 
                 Button(action: {
                     userSignUpViewModel.data()
-                    userSignUpViewModel.requestLogin(data: userSignUpViewModel.userSignUpModel)
+                    print("\(userSignUpViewModel)")
+                    userSignUpViewModel.requestSignUp(data: userSignUpViewModel.userSignUpModel)
                     
                 }, label: {
                     Text("Sign Up")
