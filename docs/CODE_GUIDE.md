@@ -10,6 +10,26 @@ SGS DEV CAMP NCNS의 iOS 개발 담당 한상혁 인턴 입니다.
 
 특히 MVVM을 사용하면서 View에서는 비즈니스 로직에 관여하지 않도록 특히나 고민을 해보았습니다. 
 
+### 디렉토리 구조
+```zsh
+├── Model       # ViewModel에서 바인딩할 구조 정의
+├── View        # View로 보여주기 위한 파일 정리
+│   ├── Authentication
+│   ├── Comments
+│   ├── Feed
+│   └── ...
+├── ViewModel   # View에 적용될 비즈니스 로직 정의 
+│   │           # (통신, 데이터 바인딩)
+│   ├── Authentication
+│   ├── Comments
+│   ├── Feed
+│   └── ...
+├── Network     # 서버와 통신할 API 주소 및 ResponseModel 정의
+├── Preview Content
+├── Resources   # 이미지, 색상코드 정리
+└── Utils       # Extension, CustomView, 상수 정의
+```
+
 ## 👨‍💻 SwiftUI
 MVVM 패턴을 좀 더 유용하게 쓰기 위해 SwiftUI에 도전했습니다. 또한 2019년에 출시된 최신 프레임워크라서 도전해보고 싶었습니다.
 
@@ -63,9 +83,16 @@ HStack {
   
   <img src= "./sources/FeedTag.png" width = 50%>
 
+  * 일반 텍스트를 누르면 댓글 화면으로 이동합니다.
+  * 해시 태그를 누르면 해시태그 화면으로 이동합니다.
+  * 인물 태그를 누르면 해당 유저의 프로필 화면으로 이동합니다.
 * 댓글 화면
   
   <img src= "./sources/CommentTag.png" width = 50%>
+
+  * 일반 텍스트는 아무 이벤트가 없습니다.
+  * 해시 태그를 누르면 해시태그 화면으로 이동합니다.
+  * 인물 태그를 누르면 해당 유저의 프로필 화면으로 이동합니다.
 ---
 ## 💾 S3 접근 방식이 특이해요(with Amplify)
 ### S3 접근 방식
@@ -89,6 +116,12 @@ test2
 
 ### 🌊 S3 접근 흐름
 ![S3AccessFlow](./sources/S3AccessFlow.png)
+
+##### 참고하실 코드 링크
+##### <S3 접근 방식 코드>
+##### [ImagePageView.swift](https://github.com/sgs-ncns/NCNS-iOS/blob/main/SGS_NCNS/SGS_NCNS/View/Items/ImagePageView.swift) 👉 Image를 보여주는 ScrollView 입니다.
+##### [ImagePageViewModel.swift](https://github.com/sgs-ncns/NCNS-iOS/blob/main/SGS_NCNS/SGS_NCNS/ViewModel/Items/ImagePageViewModel.swift) 👉 사진 상위 폴더를 받으면 Amplify를 사용해 URL 객체를 배열에 저장합니다.
+
 
 ---
 ## ☺️ 이상 SGS DEV CAMP의 한상혁 인턴입니다. 
