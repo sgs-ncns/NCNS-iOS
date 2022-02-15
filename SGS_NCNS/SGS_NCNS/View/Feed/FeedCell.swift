@@ -15,20 +15,20 @@ struct FeedCell: View {
     @State var viewMore = false
     @State var isLiked = false
     @State private var isPresented = false
-    var path: String
+    var feedModel: FeedModel
+//    var path: String
     
-    init(path: String) {
-        self.path = path
+    init(feedModel: FeedModel) {
+        self.feedModel = feedModel
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            
-            ImagePageView(path: path)
+            ImagePageView(userId: feedModel.userId!, path: "\( feedModel.userId!)/\( feedModel.imagePath!)/")
                 
             // Like
             HStack {
-                Text("3 Like")
+                Text("\(feedModel.likeCount) Like")
                     .font(.system(size: 13, weight: .semibold))
                     .onTapGesture {
                         print("click like")
@@ -37,11 +37,11 @@ struct FeedCell: View {
             .padding(.leading, 15)
             .padding(.bottom, 5)
             
-            FeedContentView(viewMore: $viewMore)
+            FeedContentView(viewMore: $viewMore, feedContent: feedModel.content!)
                 .padding([.leading, .trailing], 15)
             
             NavigationLink(destination: CommentView(), label: {
-                Text("댓글 ~개 모두 보기")
+                Text("댓글 \(feedModel.commentCount)개 모두 보기")
                     .font(.system(size: 13))
                     .foregroundColor(.gray)
             })
@@ -57,8 +57,8 @@ struct FeedCell: View {
     }
 }
 
-struct FeedCell_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedCell(path: "test1/")
-    }
-}
+//struct FeedCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedCell(path: "test1/")
+//    }
+//}
