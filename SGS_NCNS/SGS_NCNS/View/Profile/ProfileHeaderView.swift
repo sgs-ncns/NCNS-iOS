@@ -31,11 +31,30 @@ struct ProfileHeaderView: View {
                 
                 
                 Spacer()
-                HStack(spacing: 16) {
+                HStack(spacing: self.isCurrentUser.checkUser.isMe ? 0 : 16) {
+//                    NavigationLink(destination: navitest(), label: {
+//                        UserStateView(value: 1, title: "Post")
+//                            .frame(width: 50)
+//                    })
+//                        .buttonStyle(.plain)
                     UserStateView(value: 1, title: "Post")
-                    UserStateView(value: 10, title: "Followers")
-                    UserStateView(value: 13, title: "Following")
-                }.padding(.trailing, 28)
+                        .frame(width: 50)
+                    if self.isCurrentUser.checkUser.isMe {
+                        NavigationLink(destination: FollowCheckView()) {
+                            KkanbuStateView(value: 2)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    NavigationLink(destination: FollowCheckView()) {
+                        UserStateView(value: 10, title: "Followers")
+                    }
+                    .buttonStyle(.plain)
+                    NavigationLink(destination: FollowCheckView()) {
+                        UserStateView(value: 13, title: "Following")
+                    }
+                    .buttonStyle(.plain)
+                    
+                }.padding(.trailing, self.isCurrentUser.checkUser.isMe ? 7 : 28)
             }
             
             Text("한상혁")
