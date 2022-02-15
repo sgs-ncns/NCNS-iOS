@@ -20,6 +20,14 @@
 		3310FFEF2786799900C157DC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFEE2786799900C157DC /* FeedView.swift */; };
 		3310FFF427868B4400C157DC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310FFF327868B4400C157DC /* FeedCell.swift */; };
 		33112DA227A23A7F003C4679 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33112DA127A23A7F003C4679 /* ResponseModel.swift */; };
+		3325742827B940BF0009F060 /* HashtagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325742727B940BF0009F060 /* HashtagCell.swift */; };
+		3325742A27B949280009F060 /* KKanbuNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325742927B949280009F060 /* KKanbuNotificationsView.swift */; };
+		3325742C27B949360009F060 /* NormalNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325742B27B949360009F060 /* NormalNotificationsView.swift */; };
+		3325742E27B953D10009F060 /* KkanbuStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325742D27B953D10009F060 /* KkanbuStateView.swift */; };
+		3325743227B95FA90009F060 /* FollowCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325743127B95FA90009F060 /* FollowCheckView.swift */; };
+		3325743827B9F5B10009F060 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325743727B9F5B10009F060 /* LoginModel.swift */; };
+		3325743A27BA6B610009F060 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325743927BA6B610009F060 /* FeedModel.swift */; };
+		3325743C27BA77880009F060 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325743B27BA77880009F060 /* FeedViewModel.swift */; };
 		332583D327B34D0F000F1BAD /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 332583D227B34D0F000F1BAD /* AWSAPIPlugin */; };
 		332583D527B34D0F000F1BAD /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 332583D427B34D0F000F1BAD /* AWSCognitoAuthPlugin */; };
 		332583D727B34D0F000F1BAD /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 332583D627B34D0F000F1BAD /* AWSS3StoragePlugin */; };
@@ -99,6 +107,14 @@
 		3310FFF327868B4400C157DC /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		3310FFF62786A3F900C157DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		33112DA127A23A7F003C4679 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		3325742727B940BF0009F060 /* HashtagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCell.swift; sourceTree = "<group>"; };
+		3325742927B949280009F060 /* KKanbuNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKanbuNotificationsView.swift; sourceTree = "<group>"; };
+		3325742B27B949360009F060 /* NormalNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNotificationsView.swift; sourceTree = "<group>"; };
+		3325742D27B953D10009F060 /* KkanbuStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KkanbuStateView.swift; sourceTree = "<group>"; };
+		3325743127B95FA90009F060 /* FollowCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCheckView.swift; sourceTree = "<group>"; };
+		3325743727B9F5B10009F060 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		3325743927BA6B610009F060 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		3325743B27BA77880009F060 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		3329AE6827A1534800649F88 /* AppleUserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUserAuthModel.swift; sourceTree = "<group>"; };
 		33363E6D27A0E66900C44614 /* GoogleUserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthModel.swift; sourceTree = "<group>"; };
 		33363E6F27A0E68000C44614 /* GoogleSignInButtonWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButtonWrapper.swift; sourceTree = "<group>"; };
@@ -280,6 +296,8 @@
 				33590F3127AA30DB007C7C81 /* ProfileSubView.swift */,
 				33590F3227AA30DB007C7C81 /* ProfileHeaderView.swift */,
 				339F9A6327915EB800B12833 /* UserStateView.swift */,
+				3325742D27B953D10009F060 /* KkanbuStateView.swift */,
+				3325743127B95FA90009F060 /* FollowCheckView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -309,6 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				3310FFEA2786767000C157DC /* NotificationsView.swift */,
+				3325742927B949280009F060 /* KKanbuNotificationsView.swift */,
+				3325742B27B949360009F060 /* NormalNotificationsView.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -333,6 +353,7 @@
 				339F9A5D2790113900B12833 /* RecommandGridView.swift */,
 				339F9A6527915FF200B12833 /* PostGridView.swift */,
 				339F9A6B279169B000B12833 /* UserCell.swift */,
+				3325742727B940BF0009F060 /* HashtagCell.swift */,
 				33BAB95C27AB92D500A92F43 /* FeedContentFilterView.swift */,
 				33BAB96227AB9F1500A92F43 /* CommentContentFilterView.swift */,
 				33D462DD27ACE7F0002DE5A4 /* TabsView.swift */,
@@ -370,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				33BAB95827AB747700A92F43 /* FeedContentViewModel.swift */,
+				3325743B27BA77880009F060 /* FeedViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -387,6 +409,7 @@
 			children = (
 				33363E7727A0E7C300C44614 /* SocialSignInModel.swift */,
 				33363E7527A0E78100C44614 /* UserSignUpModel.swift */,
+				3325743727B9F5B10009F060 /* LoginModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -451,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				33BAB95627AB746B00A92F43 /* FeedContentModel.swift */,
+				3325743927BA6B610009F060 /* FeedModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -725,21 +749,28 @@
 				33C3DCD827AFCD3300D33F80 /* CommentCreateView.swift in Sources */,
 				33E9EFF6279806FB00E582AF /* CommentView.swift in Sources */,
 				33BAB96127AB9B6700A92F43 /* CommentViewModel.swift in Sources */,
+				3325743A27BA6B610009F060 /* FeedModel.swift in Sources */,
 				338F72DF27A7D649000F658B /* KeychainQuery.swift in Sources */,
 				338F72E327A7F405000F658B /* CommentCell.swift in Sources */,
 				33590F3327AA30DB007C7C81 /* ProfileSubView.swift in Sources */,
 				33363E7827A0E7C300C44614 /* SocialSignInModel.swift in Sources */,
+				3325742C27B949360009F060 /* NormalNotificationsView.swift in Sources */,
 				3310FFE92786761100C157DC /* ProfileView.swift in Sources */,
+				3325743827B9F5B10009F060 /* LoginModel.swift in Sources */,
 				33394A8D27B56B2E0043E40D /* UploadPostModel.swift in Sources */,
 				3310FFE1278674C300C157DC /* ContentView.swift in Sources */,
 				3310FFE7278675C300C157DC /* MainTabView.swift in Sources */,
+				3325743C27BA77880009F060 /* FeedViewModel.swift in Sources */,
 				339F8D3F279E4A3300A72947 /* LoginViewModel.swift in Sources */,
+				3325742A27B949280009F060 /* KKanbuNotificationsView.swift in Sources */,
+				3325742E27B953D10009F060 /* KkanbuStateView.swift in Sources */,
 				33BAB95D27AB92D500A92F43 /* FeedContentFilterView.swift in Sources */,
 				33838BC92794443700196248 /* TextView.swift in Sources */,
 				33363E6E27A0E66900C44614 /* GoogleUserAuthModel.swift in Sources */,
 				33363E7F27A1343300C44614 /* AppleSignInButtonWrapper.swift in Sources */,
 				330F530E27AEA01B00075EF6 /* ImagePageView.swift in Sources */,
 				330F530B27AE3BE900075EF6 /* TagListView.swift in Sources */,
+				3325743227B95FA90009F060 /* FollowCheckView.swift in Sources */,
 				339F8D2E279DDD3500A72947 /* APIRequest.swift in Sources */,
 				339F9A6C279169B000B12833 /* UserCell.swift in Sources */,
 				339F9A5E2790113900B12833 /* RecommandGridView.swift in Sources */,
@@ -763,6 +794,7 @@
 				339F9A6F2791970600B12833 /* HeartButton.swift in Sources */,
 				33BAB95B27AB749200A92F43 /* FeedContentView.swift in Sources */,
 				33BAB95927AB747700A92F43 /* FeedContentViewModel.swift in Sources */,
+				3325742827B940BF0009F060 /* HashtagCell.swift in Sources */,
 				338F72E127A7F1A7000F658B /* CommentHeaderView.swift in Sources */,
 				33394A6327B3E8C20043E40D /* UserSignUpViewModel.swift in Sources */,
 				33B925CF27B10D8700EA90B2 /* AppDelegate.swift in Sources */,
