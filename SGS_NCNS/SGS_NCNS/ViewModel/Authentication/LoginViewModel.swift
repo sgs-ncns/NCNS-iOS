@@ -15,13 +15,15 @@ import Combine
  비밀번호는 8글자이상, 적어도 1개의 문자와 특문이 들어가야함.
 */
 class LoginViewModel: ObservableObject {
+    @Published var loginModel: LoginModel
     @Published var email = ""
     @Published var password = ""
     @Published var isEmailFormat = false
     @Published var isPasswordFormat = false
+    @Published var isLogin = false
     @Published var canSubmit = false
     
-    private var cancellableSet: Set<AnyCancellable> = []
+    private var bag: Set<AnyCancellable> = []
     
     // 이메일 형식 체크
     let emailFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.EMAIL_FORMAT_CHECK)
@@ -30,20 +32,21 @@ class LoginViewModel: ObservableObject {
     let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.PASSWORD_FORMAT_CHECK)
     
     init() {
+        self.loginModel = LoginModel()
         // 형식 체크
         $email
             .map { email in
                 return self.emailFormatCheck.evaluate(with: email)
             }
             .assign(to: \.isEmailFormat, on: self)
-            .store(in: &cancellableSet)
+            .store(in: &bag)
         
         $password
             .map { password in
                 return self.passwordFormatCheck.evaluate(with: password)
             }
             .assign(to: \.isPasswordFormat, on: self)
-            .store(in: &cancellableSet)
+            .store(in: &bag)
         
         // 형식 체크에 따라서 버튼 활성화
         Publishers.CombineLatest($isEmailFormat, $isPasswordFormat)
@@ -51,7 +54,7 @@ class LoginViewModel: ObservableObject {
                 return (!(self.email.isEmpty) && isPasswordFormat)
             }
             .assign(to: \.canSubmit, on: self)
-            .store(in: &cancellableSet)
+            .store(in: &bag)
     }
     
     
@@ -59,21 +62,75 @@ class LoginViewModel: ObservableObject {
     func login() {
         // 이메일로 로그인 시도
         if isEmailFormat {
-            print("Login in \(email), \(password) ")
+            self.accountData()
+            print("Login in \(loginModel.email), \(loginModel.accountName), \(loginModel.password)")
+            requestLocalLogin(data: loginModel)
             email = ""
             password = ""
+            loginModel.email = nil
+            loginModel.password = nil
         } else {
             // accountName으로 시도
-            print("Login in not email \(email)")
+            self.accountData()
+            print("Login in not email \(loginModel.email), \(loginModel.accountName), \(loginModel.password)")
+            requestAccountLogin(data: loginModel)
             email = ""
             password = ""
+            loginModel.accountName = nil
+            loginModel.password = nil
         }
         
     }
 }
 
-//extension LoginViewModel {
-//    func requestLogin() {
-//
-//    }
-//}
+extension LoginViewModel {
+    func requestAccountLogin(data: LoginModel) {
+        APIRequest.shared.requestAccountLogin(data: data)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
+                if let response = try?
+                    $0.map(ResponseModel<[String:String]>.self) {
+                    print(response)
+                    if response.responseCode == "0000" {
+                        print("AccountLogin 성공")
+                        // 로그인 성공 isMe true로
+                        self?.isLogin.toggle()
+                    } else {
+                        print("Response Code Error")
+                    }
+                } else {
+                    print("Response Catch Error")
+                }
+            })
+            .store(in: &bag)
+    }
+    
+    func requestLocalLogin(data: LoginModel) {
+        APIRequest.shared.requestLocalLogin(data: data)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
+                if let response = try?
+                    $0.map(ResponseModel<[String:String]>.self) {
+                    print(response)
+                    if response.responseCode == "0000" {
+                        print("LocalLogin 성공")
+                        // 로그인 성공 isMe true로
+                        self?.isLogin.toggle()
+                    } else {
+                        print("Response Code Error")
+                    }
+                }else {
+                    print("Response Catch Error")
+                }
+            })
+            .store(in: &bag)
+    }
+    
+    func accountData() {
+        if self.isEmailFormat {
+            self.loginModel.email = email
+        }else {
+            self.loginModel.accountName = email
+        }
+        self.loginModel.password = password
+        
+    }
+}

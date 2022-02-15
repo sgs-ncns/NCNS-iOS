@@ -16,8 +16,9 @@ import AlertToast
 
 struct UserSignUpView: View {
     @StateObject var userSignUpViewModel = UserSignUpViewModel()
-    @FocusState private var isFocused1: Bool
-    @FocusState private var isFocused2: Bool
+    @FocusState private var isEmailFieldFocused: Bool
+    @FocusState private var isAccountFieldFocused: Bool
+    @FocusState private var isPasswordFieldFocused: Bool
     @Binding var showToast: Bool
     @Environment(\.presentationMode) var mode
     
@@ -27,7 +28,7 @@ struct UserSignUpView: View {
                 .ignoresSafeArea()
             VStack {
                 
-                VStack(spacing: 20) {
+                VStack(spacing: 0) {
                     
                     CustomTextField(text: $userSignUpViewModel.email, placeholder: Text("Email"), imageName: "envelope")
                         .padding()
@@ -37,18 +38,37 @@ struct UserSignUpView: View {
                         .padding(.horizontal, 32)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke( userSignUpViewModel.email == "" || isFocused1 || (!isFocused1 && userSignUpViewModel.isEmailFormat) ? .clear : Color.red)
+                                .stroke( userSignUpViewModel.email == "" || isEmailFieldFocused || (!isEmailFieldFocused && (userSignUpViewModel.isEmailFormat && !userSignUpViewModel.isEmailDuplicate)) ? .clear : Color.red)
                                 .foregroundColor(.clear)
                                 .padding(.horizontal, 32)
                         )
-                        .focused($isFocused1)
-                        .onChange(of: isFocused1) { newValue in
+                        .focused($isEmailFieldFocused)
+                        .onChange(of: isEmailFieldFocused) { newValue in
                             if !newValue {
-                                print("\(userSignUpViewModel.isEmailFormat)")
                                 // 중복체크 서버 통신 추가
                                 // request 함수 내에서 isDuplication 해서 조건에 걸어놓기
+                                if userSignUpViewModel.isEmailFormat {
+                                    userSignUpViewModel.requestEmailDuplicate(email: userSignUpViewModel.email)
+                                }
+                            } else {
+                                userSignUpViewModel.isEmailDuplicate = false
                             }
                         }
+                        .padding(.bottom, userSignUpViewModel.email == "" || isEmailFieldFocused || (!isEmailFieldFocused && (userSignUpViewModel.isEmailFormat && !userSignUpViewModel.isEmailDuplicate)) ? 20 : 0)
+                    
+                    if !(userSignUpViewModel.email == "" || isEmailFieldFocused || (!isEmailFieldFocused && (userSignUpViewModel.isEmailFormat && !userSignUpViewModel.isEmailDuplicate))) {
+                        if !userSignUpViewModel.isEmailFormat {
+                            Text("Email format is not correct.")
+                                .font(.system(size: 13))
+                                .foregroundColor(.red)
+                                .padding([.top, .bottom], 2)
+                        } else {
+                            Text("Email is Duplicated.")
+                                .font(.system(size: 13))
+                                .foregroundColor(.red)
+                                .padding([.top, .bottom], 2)
+                        }
+                    }
                     
                     CustomTextField(text: $userSignUpViewModel.nickname, placeholder: Text("Nickname"), imageName: "person")
                         .padding()
@@ -56,6 +76,7 @@ struct UserSignUpView: View {
                         .cornerRadius(10)
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
+                        .padding(.bottom, 20)
                     
                     CustomTextField(text: $userSignUpViewModel.accountName, placeholder: Text("Account Name"), imageName: "person")
                         .padding()
@@ -63,19 +84,30 @@ struct UserSignUpView: View {
                         .cornerRadius(10)
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(// 조건추가 비어있거나 서버와 통신해서 중복인지 아닌지) ? .clear : Color.red)
-//                                .foregroundColor(.clear)
-//                                .padding(.horizontal, 32)
-//                        )
-                        .focused($isFocused2)
-                        .onChange(of: isFocused2) { newValue in
-                            if !newValue {
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke( userSignUpViewModel.accountName == "" || isAccountFieldFocused || (!isAccountFieldFocused && !userSignUpViewModel.isAccountDuplicate) ? .clear : Color.red)
+                                .foregroundColor(.clear)
+                                .padding(.horizontal, 32)
+                        )
+                        .focused($isAccountFieldFocused)
+                        .onChange(of: isAccountFieldFocused) { newValue in
+                            if !newValue && userSignUpViewModel.accountName != "" {
                                 print("Account Name Lost focus")
                                 // account 중북 서버 통신
+                                userSignUpViewModel.requestAccountDuplicate(account: userSignUpViewModel.accountName)
+                            } else {
+                                userSignUpViewModel.isAccountDuplicate = false
                             }
                         }
+                        .padding(.bottom, userSignUpViewModel.accountName == "" || isAccountFieldFocused || (!isAccountFieldFocused && !userSignUpViewModel.isAccountDuplicate) ? 20 : 0)
+                    
+                    if !(userSignUpViewModel.accountName == "" || isAccountFieldFocused || (!isAccountFieldFocused && !userSignUpViewModel.isAccountDuplicate)) {
+                            Text("Account is Duplicated.")
+                                .font(.system(size: 13))
+                                .foregroundColor(.red)
+                                .padding([.top, .bottom], 2)
+                    }
                     
                     CustomSecureField(text: $userSignUpViewModel.password, placeholder: Text("Password"))
                         .padding()
@@ -83,6 +115,27 @@ struct UserSignUpView: View {
                         .cornerRadius(10)
                         .foregroundColor(.white)
                         .padding(.horizontal, 32)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke( userSignUpViewModel.password == "" || isPasswordFieldFocused || (!isPasswordFieldFocused && userSignUpViewModel.isPasswordFormat) ? .clear : Color.red)
+                                .foregroundColor(.clear)
+                                .padding(.horizontal, 32)
+                        )
+                        .focused($isPasswordFieldFocused)
+                        .onChange(of: isPasswordFieldFocused) { newValue in
+                            if !newValue {
+                                print("TF: \(userSignUpViewModel.canSubmit) \(userSignUpViewModel.canSubmitMore)")
+                                print("Password Lost focus: Password Format : \(userSignUpViewModel.isPasswordFormat)")
+                            }
+                        }
+                        .padding(.bottom, userSignUpViewModel.password == "" || isPasswordFieldFocused || (!isPasswordFieldFocused && userSignUpViewModel.isPasswordFormat) ? 20 : 0)
+                    
+                    if !(userSignUpViewModel.password == "" || isPasswordFieldFocused || (!isPasswordFieldFocused && userSignUpViewModel.isPasswordFormat)) {
+                            Text("The password must be at least one word and one digit.")
+                                .font(.system(size: 13))
+                                .foregroundColor(.red)
+                                .padding([.top, .bottom], 2)
+                    }
                 }
                 .padding(.top, 154)
                 
@@ -106,8 +159,8 @@ struct UserSignUpView: View {
                             mode.wrappedValue.dismiss()
                         }
                     }
-                    .opacity(userSignUpViewModel.canSubmit ? 1 : 0.6)
-                    .disabled(!userSignUpViewModel.canSubmit)
+                    .opacity(userSignUpViewModel.canSubmit && userSignUpViewModel.canSubmitMore ? 1 : 0.6)
+                    .disabled(!(userSignUpViewModel.canSubmit && userSignUpViewModel.canSubmitMore))
                 Spacer()
                 
                 Button(action: {

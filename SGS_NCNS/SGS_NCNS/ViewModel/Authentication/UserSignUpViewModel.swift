@@ -25,8 +25,12 @@ class UserSignUpViewModel: ObservableObject {
     @Published var isNicknameEmpty = true
     @Published var isAccountNameEmpty = true
     @Published var isPasswordFormat = false
+    @Published var isEmailDuplicate = false
+    @Published var isAccountDuplicate = false
     @Published var goBack: Bool = false
+    @Published var noDuplicate = false
     @Published var canSubmit = false
+    @Published var canSubmitMore = false
     @Environment(\.presentationMode) var mode
     
     private var bag = Set<AnyCancellable>()
@@ -79,6 +83,14 @@ class UserSignUpViewModel: ObservableObject {
             }
             .assign(to: \.canSubmit, on: self)
             .store(in: &bag)
+        
+        Publishers.CombineLatest($isEmailDuplicate, $isAccountDuplicate)
+            .map { isEmailDuplicate, isAccountDuplicate in
+                return (!isEmailDuplicate && !isAccountDuplicate)
+            }
+            .assign(to: \.canSubmitMore, on: self)
+            .store(in: &bag)
+        
     }
 }
 
@@ -98,6 +110,43 @@ extension UserSignUpViewModel {
                     }
                 } else {
                     print("Response Catch Error")
+                }
+            })
+            .store(in: &bag)
+    }
+    
+    func requestEmailDuplicate(email: String) {
+        APIRequest.shared.requestEmailDuplicate(email: email)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
+                if let response = try?
+                    $0.map(ResponseModel<[String:Bool]>.self) {
+                    print(response)
+                    if response.data!["result"]! == false {
+                        print("\(email)")
+                        print("Email 중복 아님!")
+                        self?.isEmailDuplicate = false
+                    } else {
+                        print("Email 중복임!!")
+                        self?.isEmailDuplicate = true
+                    }
+                }
+            })
+            .store(in: &bag)
+    }
+    
+    func requestAccountDuplicate(account: String) {
+        APIRequest.shared.requestAccountDuplicate(account: account)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
+                if let response = try?
+                    $0.map(ResponseModel<[String:Bool]>.self) {
+                    print(response)
+                    if response.data!["result"]! == false {
+                        print("Account 중복 아님!")
+                        self?.isAccountDuplicate = false
+                    } else {
+                        print("Account 중복!")
+                        self?.isAccountDuplicate = true
+                    }
                 }
             })
             .store(in: &bag)

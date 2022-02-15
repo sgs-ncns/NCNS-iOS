@@ -11,11 +11,11 @@ import AlertToast
 /*
  로그인 화면을 구성하는 View입니다.
  GoogleUserAuthModel을 앱 실행 시 초기화시켜 뷰와 연결시킵니다.
-*/
+ */
 
 struct LoginView: View {
     @EnvironmentObject var googleUserAuthModel: GoogleUserAuthModel
-    @StateObject private var viewModel = LoginViewModel()
+    @StateObject private var loginViewModel = LoginViewModel()
     @State var showToast = false
     @Binding var isLogin: Bool
     
@@ -30,16 +30,16 @@ struct LoginView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 220, height: 100)
-
+                    
                     VStack(spacing: 20) {
-                        LoginCustomTextField(text: $viewModel.email, placeholder: Text("Email"), imageName: "envelope")
+                        LoginCustomTextField(text: $loginViewModel.email, placeholder: Text("Email"), imageName: "envelope")
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
                             .foregroundColor(.white)
                             .padding(.horizontal, 32)
                         
-                        CustomSecureField(text: $viewModel.password, placeholder: Text("Password"))
+                        CustomSecureField(text: $loginViewModel.password, placeholder: Text("Password"))
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)
@@ -58,21 +58,27 @@ struct LoginView: View {
                                 .padding(.trailing, 32)
                         })
                     }
-
+                    
                     Button {
-                        viewModel.login()
+                        loginViewModel.login()
                         UIApplication.shared.endEditing()
                     } label: {
                         Text("Sign In")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 360, height: 50)
+                            .background(Color("SignInButton"))
+                            .clipShape(Capsule())
+                            .padding()
+                            .opacity(loginViewModel.canSubmit ? 1 : 0.6)
                     }
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(width: 360, height: 50)
-                    .background(Color("SignInButton"))
-                    .clipShape(Capsule())
-                    .padding()
-                    .opacity(viewModel.canSubmit ? 1 : 0.6)
-                    .disabled(!viewModel.canSubmit)
+                    .disabled(!loginViewModel.canSubmit)
+                    .onChange(of: loginViewModel.isLogin) { isLogin in
+                        if isLogin {
+                            self.isLogin = true
+                        }
+                    }
+                    
                     
                     VStack(spacing: 10) {
                         GoogleSignInButtonWrapper(handler: googleUserAuthModel.signIn)
@@ -85,10 +91,8 @@ struct LoginView: View {
                         
                         AppleSignInButtonWrapper(isLogin: $isLogin)
                             .frame(width: 280, height: 44, alignment: .center)
-                        
                     }
                     
-                      
                     Spacer()
                     
                     Button(action: {
@@ -110,7 +114,7 @@ struct LoginView: View {
                                 Text("Sign Up")
                                     .font(.system(size: 14, weight: .semibold))
                             }.foregroundColor(.white)
-                    }).padding(.bottom, 16)
+                        }).padding(.bottom, 16)
                 }
                 .padding(.top, -44)
             }
