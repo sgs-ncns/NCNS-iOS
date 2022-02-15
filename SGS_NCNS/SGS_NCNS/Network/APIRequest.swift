@@ -44,10 +44,25 @@ final class DefaultAlamofireSession: Session {
 }
 
 extension APIRequest {
+    func requestAccountLogin(data: LoginModel) -> Future<Response, Error> {
+        request(.requestAccountLogin(data: data))
+    }
+    func requestLocalLogin(data: LoginModel) -> Future<Response, Error> {
+        request(.requestLocalLogin(data: data))
+    }
     func requestSocialLogin(data: SocialSignInModel) -> Future<Response, Error> {
         request(.requestSocialLogin(data: data))
     }
     func requestSignUp(data: UserSignUpModel) -> Future<Response, Error> {
         request(.requestSignUp(data: data))
+    }
+    func requestEmailDuplicate(email: String) -> Future<Response, Error> {
+        request(.requestEmailDuplicate(email: email))
+    }
+    func requestAccountDuplicate(account: String) -> Future<Response, Error> {
+        request(.requestAccountDuplicate(account: account))
+    }
+    func requestFeedList() -> Future<Response, Error> {
+        request(.requestFeedList)
     }
 }
