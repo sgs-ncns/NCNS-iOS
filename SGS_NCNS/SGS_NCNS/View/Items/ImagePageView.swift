@@ -16,32 +16,36 @@ import Kingfisher
  */
 
 struct ImagePageView: View {
+    var userId: String
     var path: String
     
-    init(path: String) {
+    init(userId: String, path: String) {
+        self.userId = userId
         self.path = path
     }
     var body: some View {
         LazyHStack {
-            PageViewCell(path: path)
+            PageViewCell(userId: userId, path: path)
         }.scaledToFit()
     }
 }
 
 struct PageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePageView(path: "test/")
+        ImagePageView(userId: "han", path: "test/")
     }
 }
 
 struct PageViewCell: View {
     @StateObject var imagePageViewModel: ImagePageViewModel
     @State var isLiked = false
+    var userId: String
     // 인디케이터 색 바꾸기
-    init(path: String) {
+    init(userId: String, path: String) {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "FeedIndicator")
         UIPageControl.appearance().pageIndicatorTintColor = UIColor(named: "FeedIndicatorReady")
         _imagePageViewModel = StateObject(wrappedValue: ImagePageViewModel(path: path))
+        self.userId = userId
     }
     
     var body: some View {
@@ -75,7 +79,7 @@ struct PageViewCell: View {
                                         .clipShape(Circle())
                                         .padding(.leading, 10)
                                     
-                                    Text("User ID")
+                                    Text("\(userId)")
                                         .font(.system(size: 13, weight: .semibold))
                                         .padding(.leading, 4)
                                     

@@ -39,6 +39,7 @@ struct SearchView: View {
                         Divider()
                             .padding(0)
                     }.transition(AnyTransition.opacity.animation(.easeInOut))
+                        .animation(.easeIn, value: selectedTab)
                 }
                 GeometryReader { geometry in
                     ScrollView {

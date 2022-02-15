@@ -25,6 +25,15 @@ struct PopularListView: View {
                     UserCell()
                         .padding(.leading)
                     })
+                NavigationLink(
+                    destination: HashTagView(hashtagString: "hi")
+                        .onAppear(perform: {
+                            isCurrentUser.checkUser.isMe = false
+                        }),
+                    label: {
+                    HashtagCell()
+                        .padding(.leading)
+                    })
             }
         }
     }
