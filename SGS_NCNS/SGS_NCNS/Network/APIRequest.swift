@@ -10,12 +10,18 @@ import Moya
 import Combine
 
 final class APIRequest {
-    private init() { }
+    init() {
+        
+    }
     
     static let shared = APIRequest()
     
+    
     private let provider = MoyaProvider<API>.init(session: DefaultAlamofireSession.sharedSession,
-                                                  plugins: [AccessTokenPlugin { _ in return "bear-access-token-sample" }])
+                                                  plugins: [AccessTokenPlugin { _ in
+        let kc = KeyChainUtils()
+        let accessToken = kc.read("login", account: "accessToken") ?? ""
+        return "\(accessToken)" }])
     
     private func request(_ api: API) -> Future<Response, Error> {
         Future<Response, Error> { [weak self] promise in
@@ -44,6 +50,9 @@ final class DefaultAlamofireSession: Session {
 }
 
 extension APIRequest {
+    func requestReissueToken() -> Future<Response, Error> {
+        request(.requestReissueToken)
+    }
     func requestAccountLogin(data: LoginModel) -> Future<Response, Error> {
         request(.requestAccountLogin(data: data))
     }
@@ -64,5 +73,23 @@ extension APIRequest {
     }
     func requestFeedList() -> Future<Response, Error> {
         request(.requestFeedList)
+    }
+    func requestProfile(accountName: String) -> Future<Response, Error> {
+        request(.requestProfile(accountName: accountName))
+    }
+    func requestFollow(targetId: Int) -> Future<Response, Error> {
+        request(.requestFollow(targetId: targetId))
+    }
+    func requestKkanbu(targetId: Int) -> Future<Response, Error> {
+        request(.requestKkanbu(targetId: targetId))
+    }
+    func requestFollowersList(userId: Int) -> Future<Response, Error> {
+        request(.requestFollowersList(userId: userId))
+    }
+    func requestFollowingList(userId: Int) -> Future<Response, Error> {
+        request(.requestFollowingList(userId: userId))
+    }
+    func requestKkanbuList() -> Future<Response, Error> {
+        request(.requestKkanbuList)
     }
 }
