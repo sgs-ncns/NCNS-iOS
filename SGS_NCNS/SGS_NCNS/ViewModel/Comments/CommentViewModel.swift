@@ -15,7 +15,6 @@ import SwiftUI
 
 class CommentViewModel: ObservableObject {
     @Published var feedContent: [Comment<Text>] = []
-    @EnvironmentObject var isCurrentUser: MySettings
     private var splitText: [String]
     
     // 전체 String 받아와서 split 진행
@@ -30,7 +29,7 @@ class CommentViewModel: ObservableObject {
         splitText.enumerated().forEach {
             if $0 == 0 {
                 let user = $1
-                feedContent.append(.user(NavigationLink(destination: ProfileSubView(), label: { Text("\(user)")
+                feedContent.append(.user(NavigationLink(destination: ProfileSubView(clickedUserName: user), label: { Text("\(user)")
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.black)
                 })))
@@ -43,7 +42,8 @@ class CommentViewModel: ObservableObject {
                 })))
             } else if $1.hasPrefix("@") {
                 let humantag = $1
-                feedContent.append(.humantag(NavigationLink(destination: ProfileSubView(), label: { Text("\(humantag)")
+                let dropPrefix = $1.deletingPrefix("@")
+                feedContent.append(.humantag(NavigationLink(destination: ProfileSubView(clickedUserName: dropPrefix), label: { Text("\(humantag)")
                         .font(.system(size: 13))
                         .foregroundColor(.blue)
                 })))
