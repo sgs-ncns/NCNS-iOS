@@ -15,9 +15,9 @@ import AlertToast
 
 struct LoginView: View {
     @EnvironmentObject var googleUserAuthModel: GoogleUserAuthModel
+    @EnvironmentObject var loginCheckModel: LoginCheckModel
     @StateObject private var loginViewModel = LoginViewModel()
     @State var showToast = false
-    @Binding var isLogin: Bool
     
     var body: some View {
         NavigationView {
@@ -75,7 +75,7 @@ struct LoginView: View {
                     .disabled(!loginViewModel.canSubmit)
                     .onChange(of: loginViewModel.isLogin) { isLogin in
                         if isLogin {
-                            self.isLogin = true
+                            loginCheckModel.isLoggedIn = true
                         }
                     }
                     
@@ -85,18 +85,18 @@ struct LoginView: View {
                             .frame(width: 280, height: 44, alignment: .center)
                             .onReceive(googleUserAuthModel.$isLoginSuccess) {
                                 if $0 {
-                                    isLogin = true
+                                    loginCheckModel.isLoggedIn = true
                                 }
                             }
                         
-                        AppleSignInButtonWrapper(isLogin: $isLogin)
+                        AppleSignInButtonWrapper()
                             .frame(width: 280, height: 44, alignment: .center)
                     }
                     
                     Spacer()
                     
                     Button(action: {
-                        isLogin = true
+                        loginCheckModel.isLoggedIn = true
                     }, label: {
                         Text("ContentView")
                             .font(.system(size: 14))
@@ -127,6 +127,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(isLogin: .constant(false))
+        LoginView()
     }
 }

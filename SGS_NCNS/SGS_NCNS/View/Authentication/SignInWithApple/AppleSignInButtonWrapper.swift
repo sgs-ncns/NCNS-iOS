@@ -17,7 +17,7 @@ import AuthenticationServices
 struct AppleSignInButtonWrapper: View {
     
     @EnvironmentObject var appleUserAuthModel: AppleUserAuthModel
-    @Binding var isLogin: Bool
+    @EnvironmentObject var loginCheckModel: LoginCheckModel
     
     var body: some View {
         SignInWithAppleButton(
@@ -31,7 +31,7 @@ struct AppleSignInButtonWrapper: View {
         )
             .onReceive(appleUserAuthModel.$isLoginSuccess) {
                 if $0 {
-                    isLogin = true
+                    loginCheckModel.isLoggedIn = true
                 }
             }
     }
@@ -39,6 +39,6 @@ struct AppleSignInButtonWrapper: View {
 
 struct AppleSignInButtonWrapper_Previews: PreviewProvider {
     static var previews: some View {
-        AppleSignInButtonWrapper(isLogin: .constant(false))
+        AppleSignInButtonWrapper()
     }
 }
