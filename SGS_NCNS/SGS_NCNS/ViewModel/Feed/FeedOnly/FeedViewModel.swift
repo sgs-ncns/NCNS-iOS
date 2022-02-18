@@ -27,9 +27,7 @@ extension FeedViewModel {
                 if let response = try?
                     $0.map(ResponseModel<[FeedModel]>.self) {
                     if response.responseCode == "2000" {
-                        print("JSON 파싱 성공")
                         self?.feedModels = response.data!
-                        print(self?.feedModels)
                     }
                 }
             })

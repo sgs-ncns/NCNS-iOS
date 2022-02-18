@@ -25,12 +25,15 @@ struct FeedView: View {
                         ForEach(0 ..< feedViewModel.feedModels.count, id: \.self) { i in
                             FeedCell(feedModel: feedViewModel.feedModels[i])
                         }
-    //                    FeedCell(path: "contea95/e/")
-    //                    FeedCell(path: "test2/")
                     }
                 } else {
                     // 사람으로 보기 뷰
-                    FeedNewView()
+                    withAnimation {
+                        VStack(spacing: 30) {
+                            FeedNewCell()
+                        }
+                    }
+                    .transition(.opacity)
                 }
             }
             .onAppear(perform: {
@@ -44,7 +47,7 @@ struct FeedView: View {
                     Button(action: {
                         self.viewSwitch.toggle()
                     }, label: {
-                        Text(self.viewSwitch ? "사람으로 보기" : "피드로 보기")
+                        Text(self.viewSwitch ? "피드로 보기" : "사람으로 보기")
                     })
                 }
             }

@@ -31,7 +31,7 @@ class FeedContentViewModel: ObservableObject {
         splitText.enumerated().forEach {
             if $0 == 0 {
                 let user = $1
-                feedContent.append(.user(NavigationLink(destination: ProfileSubView(), label: { Text("\(user)")
+                feedContent.append(.user(NavigationLink(destination: ProfileSubView(clickedUserName: user), label: { Text("\(user)")
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.black)
                 })))
@@ -45,7 +45,7 @@ class FeedContentViewModel: ObservableObject {
             } else if $1.hasPrefix("@") {
                 let humantag = $1
                 let dropPrefix = $1.deletingPrefix("@")
-                feedContent.append(.humantag(NavigationLink(destination: ProfileSubView(), label: { Text("\(humantag)")
+                feedContent.append(.humantag(NavigationLink(destination: ProfileSubView(clickedUserName: dropPrefix), label: { Text("\(humantag)")
                         .font(.system(size: 13))
                         .foregroundColor(.blue)
                 })))

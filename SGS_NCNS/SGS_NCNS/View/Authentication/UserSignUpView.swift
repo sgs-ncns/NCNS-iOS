@@ -93,7 +93,6 @@ struct UserSignUpView: View {
                         .focused($isAccountFieldFocused)
                         .onChange(of: isAccountFieldFocused) { newValue in
                             if !newValue && userSignUpViewModel.accountName != "" {
-                                print("Account Name Lost focus")
                                 // account 중북 서버 통신
                                 userSignUpViewModel.requestAccountDuplicate(account: userSignUpViewModel.accountName)
                             } else {
@@ -124,8 +123,6 @@ struct UserSignUpView: View {
                         .focused($isPasswordFieldFocused)
                         .onChange(of: isPasswordFieldFocused) { newValue in
                             if !newValue {
-                                print("TF: \(userSignUpViewModel.canSubmit) \(userSignUpViewModel.canSubmitMore)")
-                                print("Password Lost focus: Password Format : \(userSignUpViewModel.isPasswordFormat)")
                             }
                         }
                         .padding(.bottom, userSignUpViewModel.password == "" || isPasswordFieldFocused || (!isPasswordFieldFocused && userSignUpViewModel.isPasswordFormat) ? 20 : 0)
@@ -141,7 +138,6 @@ struct UserSignUpView: View {
                 
                 Button(action: {
                     userSignUpViewModel.data()
-                    print("\(userSignUpViewModel)")
                     userSignUpViewModel.requestSignUp(data: userSignUpViewModel.userSignUpModel)
                     
                 }, label: {

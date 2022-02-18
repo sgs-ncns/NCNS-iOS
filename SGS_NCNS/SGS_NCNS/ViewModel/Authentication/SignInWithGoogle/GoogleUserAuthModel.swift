@@ -21,7 +21,7 @@ final class GoogleUserAuthModel: ObservableObject {
     private var bag = Set<AnyCancellable>()
     
     init() {
-        check()
+//        check()
     }
     
     // 유저 정보를 확인하는 함수
@@ -32,8 +32,8 @@ final class GoogleUserAuthModel: ObservableObject {
             guard let user = user else { return }
             
             // 유저의 정보 중 idToken값을 받아와서 접속한 유저의 email을 jwt에서 디코딩 후 서버에 보낼 준비
-            let idToken = user.authentication.idToken
-            let emailAddress = try! decode(jwt: idToken!).body["email"]
+            guard let idToken = user.authentication.idToken else { return }
+            let emailAddress = try? decode(jwt: idToken).body["email"]
             
             //서버에게 로그인한 authType과 유저 email 정보를 전달
             self.userSocialLogin.email = emailAddress as? String ?? ""
@@ -90,7 +90,7 @@ extension GoogleUserAuthModel {
                         self?.signOut()
                     }
                 } else {
-                    print("실패...")
+                    print("구글 실패")
                 }
             })
             .store(in: &bag)

@@ -15,9 +15,9 @@ struct UserSignUpModel: Codable {
         case password
         case authType = "auth_type"
     }
-    var email: String?
-    var nickname: String?
-    var accountName: String?
-    var password: String?
-    var authType: String? = "LOCAL"
+    var email: String
+    var nickname: String
+    var accountName: String
+    var password: String
+    var authType: String = "LOCAL"
 }

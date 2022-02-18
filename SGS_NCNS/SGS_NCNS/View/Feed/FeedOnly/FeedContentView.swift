@@ -11,14 +11,15 @@ struct FeedContentView: View {
     @State private var height: CGFloat = 0
     @Binding var viewMore: Bool
     var feedContent: String
+    var accountName: String
     var body: some View {
         if !viewMore {
             // 더 보기 누르기 전 뷰
-            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: "Contea95"), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName), height: $height)
 
         } else {
             // 더 보기 눌렀을 때 뷰
-            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: "Contea95"), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName), height: $height)
 
         }
     }
@@ -26,6 +27,6 @@ struct FeedContentView: View {
 
 struct FeedContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedContentView(viewMore: .constant(false), feedContent: "tmp")
+        FeedContentView(viewMore: .constant(false), feedContent: "tmp", accountName: "contea95")
     }
 }

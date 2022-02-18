@@ -31,6 +31,7 @@ struct CommentView: View {
             CommentCreateView(text: $commentText, inSearchMode: $isSearchMode, placeholder: Text("댓글 달기..."), imageName: "img6")
                 
         }
+        .navigationTitle("Comment")
     }
 }
 

@@ -14,7 +14,7 @@ import SwiftUI
 struct FeedCell: View {
     @State var viewMore = false
     @State var isLiked = false
-    @State private var isPresented = false
+
     var feedModel: FeedModel
 //    var path: String
     
@@ -24,7 +24,7 @@ struct FeedCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ImagePageView(userId: feedModel.userId!, path: "\( feedModel.userId!)/\( feedModel.imagePath!)/")
+            ImagePageView(userId: feedModel.userId, accountName: feedModel.accountName, path: "\( feedModel.accountName)/\( feedModel.imagePath)/")
                 
             // Like
             HStack {
@@ -37,7 +37,7 @@ struct FeedCell: View {
             .padding(.leading, 15)
             .padding(.bottom, 5)
             
-            FeedContentView(viewMore: $viewMore, feedContent: feedModel.content!)
+            FeedContentView(viewMore: $viewMore, feedContent: feedModel.content, accountName: feedModel.accountName)
                 .padding([.leading, .trailing], 15)
             
             NavigationLink(destination: CommentView(), label: {

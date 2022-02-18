@@ -40,7 +40,7 @@ final class AppleUserAuthModel: ObservableObject {
     func checkUserInfo(result: (ASAuthorization)) {
         guard let credentials = result.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken, let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
         
-        let emailAddress = try! decode(jwt: identityTokenString).body["email"]!
+        let emailAddress = try! decode(jwt: identityTokenString).body["email"]
         
         self.userSocialLogin.email = emailAddress as? String ?? ""
         print("AuthType: \(userSocialLogin.authType), user EmailAddress: \(userSocialLogin.email)")
@@ -59,7 +59,7 @@ extension AppleUserAuthModel {
                         self?.isLoginSuccess = true
                     }
                 } else {
-                    print("실패...")
+                    print("애플 실패")
                 }
             })
             .store(in: &bag)

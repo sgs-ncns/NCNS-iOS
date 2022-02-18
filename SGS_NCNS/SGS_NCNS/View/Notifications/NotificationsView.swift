@@ -57,7 +57,6 @@ struct NotificationsView: View {
         }.navigationViewStyle(StackNavigationViewStyle())
             .onAppear {
                 if isFirstLoad{
-                    var _ = print("NotificationView Appear")
                     isFirstLoad = false
                 }
             }

@@ -11,19 +11,17 @@ import SwiftUI
 class MySettings: ObservableObject {
     // 프로필 = 무조건 true, 유저검색 -> 자신 : true, 다른사람: false
     struct UserCheck {
-        var isMe: Bool!
+        var isMe: Bool
     }
-    @Published var checkUser: UserCheck = UserCheck(isMe: true)
+    @Published var checkUser: UserCheck = UserCheck(isMe: false)
 }
-var isCurrentUser = MySettings()
 
 @main
 struct SGS_NCNSApp: App {
     // 로그인 화면에서 로그인 성공 시 이동
     @StateObject var googleUserAuthModel: GoogleUserAuthModel = GoogleUserAuthModel()
     @StateObject var appleUserAuthModel: AppleUserAuthModel = AppleUserAuthModel()
-    @State var isLogin = false
-    
+    @StateObject var loginCheckModel: LoginCheckModel = LoginCheckModel()
     init() {
         
     }
@@ -31,21 +29,17 @@ struct SGS_NCNSApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if !isLogin {
-                    LoginView(isLogin: $isLogin)
+                if !loginCheckModel.isLoggedIn {
+                    LoginView()
                         .environmentObject(googleUserAuthModel)
                         .environmentObject(appleUserAuthModel)
+                        .environmentObject(loginCheckModel)
                 } else {
                     ContentView()
-                        .environmentObject(isCurrentUser)
+                        .environmentObject(loginCheckModel)
+                        .environmentObject(MySettings())
                 }
-            }.animation(isLogin ? .easeOut : nil)
+            }.animation(loginCheckModel.isLoggedIn ? .easeOut : nil)
         }
-    }
-}
-
-private extension SGS_NCNSApp {
-    func setupUserKeychain() {
-        
     }
 }

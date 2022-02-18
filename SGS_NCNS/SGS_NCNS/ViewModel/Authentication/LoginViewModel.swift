@@ -63,7 +63,6 @@ class LoginViewModel: ObservableObject {
         // 이메일로 로그인 시도
         if isEmailFormat {
             self.accountData()
-            print("Login in \(loginModel.email), \(loginModel.accountName), \(loginModel.password)")
             requestLocalLogin(data: loginModel)
             email = ""
             password = ""
@@ -72,7 +71,6 @@ class LoginViewModel: ObservableObject {
         } else {
             // accountName으로 시도
             self.accountData()
-            print("Login in not email \(loginModel.email), \(loginModel.accountName), \(loginModel.password)")
             requestAccountLogin(data: loginModel)
             email = ""
             password = ""
@@ -88,11 +86,17 @@ extension LoginViewModel {
         APIRequest.shared.requestAccountLogin(data: data)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
                 if let response = try?
-                    $0.map(ResponseModel<[String:String]>.self) {
-                    print(response)
+                    $0.map(ResponseModel<LoginResponseModel>.self) {
                     if response.responseCode == "0000" {
                         print("AccountLogin 성공")
-                        // 로그인 성공 isMe true로
+                        // 토큰, userId, accountName Keychain에 저장
+                        
+                        let kc = KeyChainUtils()
+                        kc.create("login", account: "accessToken", value: (response.data?.accessToken)!)
+                        kc.create("login", account: "refreshToken", value: (response.data?.refreshToken)!)
+                        kc.create("login", account: "userId", value: String((response.data?.userId ?? 0)))
+                        kc.create("login", account: "accountName", value: (response.data?.accountName)!)
+                        print("accessToken: \(kc.read("login", account: "accessToken")!)")
                         self?.isLogin.toggle()
                     } else {
                         print("Response Code Error")
@@ -108,17 +112,22 @@ extension LoginViewModel {
         APIRequest.shared.requestLocalLogin(data: data)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
                 if let response = try?
-                    $0.map(ResponseModel<[String:String]>.self) {
-                    print(response)
+                    $0.map(ResponseModel<LoginResponseModel>.self) {
+//                    print(response.responseCode)
                     if response.responseCode == "0000" {
                         print("LocalLogin 성공")
-                        // 로그인 성공 isMe true로
+                        // 토큰, userId, accountName Keychain에 저장
+                        let kc = KeyChainUtils()
+                        kc.create("login", account: "accessToken", value: (response.data?.accessToken)!)
+                        kc.create("login", account: "refreshToken", value: (response.data?.refreshToken)!)
+                        kc.create("login", account: "userId", value: String((response.data?.userId) ?? 0))
+                        kc.create("login", account: "accountName", value: (response.data?.accountName)!)
                         self?.isLogin.toggle()
                     } else {
                         print("Response Code Error")
                     }
                 }else {
-                    print("Response Catch Error")
+                    print("Response local Catch Error")
                 }
             })
             .store(in: &bag)

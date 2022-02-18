@@ -9,9 +9,9 @@ import Foundation
 
 struct ResponseModel<T: Decodable>: Decodable {
     // required, 임의의 코드
-    let responseCode: String!
+    let responseCode: String
     // optional, 상태에 대한 메시지
-    let message: String?
+    let message: String
     // optional, 응답 객체
     let data: T?
     

@@ -42,7 +42,7 @@ class UserSignUpViewModel: ObservableObject {
     let passwordFormatCheck = NSPredicate(format: "SELF MATCHES %@", Const.LoginFormCheck.PASSWORD_FORMAT_CHECK)
     
     init() {
-        self.userSignUpModel = UserSignUpModel()
+        self.userSignUpModel = UserSignUpModel(email: "", nickname: "", accountName: "", password: "")
         
         $email
             .map { email in
@@ -103,7 +103,6 @@ extension UserSignUpViewModel {
                     $0.map(ResponseModel<[String:String]>.self) {
                     print(response)
                     if response.responseCode == "1000" {
-                        print("회원가입 성공")
                         self?.goBack.toggle()
                     } else {
                         print("Response Code Error")
@@ -121,7 +120,7 @@ extension UserSignUpViewModel {
                 if let response = try?
                     $0.map(ResponseModel<[String:Bool]>.self) {
                     print(response)
-                    if response.data!["result"]! == false {
+                    if response.data?["result"] == false {
                         print("\(email)")
                         print("Email 중복 아님!")
                         self?.isEmailDuplicate = false
@@ -140,7 +139,7 @@ extension UserSignUpViewModel {
                 if let response = try?
                     $0.map(ResponseModel<[String:Bool]>.self) {
                     print(response)
-                    if response.data!["result"]! == false {
+                    if response.data?["result"] == false {
                         print("Account 중복 아님!")
                         self?.isAccountDuplicate = false
                     } else {
