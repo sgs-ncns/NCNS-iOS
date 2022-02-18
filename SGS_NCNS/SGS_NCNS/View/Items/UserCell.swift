@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct UserCell: View {
+    var accountName: String = "test1"
+    var nickname: String = "test123"
     var body: some View {
         HStack {
-            Image("Exprofile_reflect")
+            Image("user_default")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 64, height: 64)
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text("User")
+                Text(accountName)
                     .font(.system(size: 13, weight: .semibold))
-                Text("informantion")
+                Text(nickname)
                     .font(.system(size: 13))
             }
             Spacer()

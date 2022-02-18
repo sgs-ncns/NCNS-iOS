@@ -16,36 +16,40 @@ import Kingfisher
  */
 
 struct ImagePageView: View {
-    var userId: String
+    var userId: Int
+    var accountName: String
     var path: String
     
-    init(userId: String, path: String) {
+    init(userId: Int, accountName: String, path: String) {
         self.userId = userId
+        self.accountName = accountName
         self.path = path
     }
     var body: some View {
         LazyHStack {
-            PageViewCell(userId: userId, path: path)
+            PageViewCell(userId: userId, accountName: accountName, path: path)
         }.scaledToFit()
     }
 }
 
 struct PageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePageView(userId: "han", path: "test/")
+        ImagePageView(userId: 1, accountName: "contea95", path: "test/")
     }
 }
 
 struct PageViewCell: View {
     @StateObject var imagePageViewModel: ImagePageViewModel
     @State var isLiked = false
-    var userId: String
+    var userId: Int
+    var accountName: String
     // 인디케이터 색 바꾸기
-    init(userId: String, path: String) {
+    init(userId: Int, accountName: String, path: String) {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "FeedIndicator")
         UIPageControl.appearance().pageIndicatorTintColor = UIColor(named: "FeedIndicatorReady")
         _imagePageViewModel = StateObject(wrappedValue: ImagePageViewModel(path: path))
         self.userId = userId
+        self.accountName = accountName
     }
     
     var body: some View {
@@ -69,17 +73,17 @@ struct PageViewCell: View {
                     ZStack {
                         Rectangle()
                             .foregroundColor(.white)
-                        NavigationLink(destination: ProfileSubView()) {
+                        NavigationLink(destination: ProfileSubView(clickedUserName: accountName)) {
                             VStack {
                                 HStack {
-                                    Image("img3")
+                                    Image("user_default")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 32, height: 32)
                                         .clipShape(Circle())
                                         .padding(.leading, 10)
                                     
-                                    Text("\(userId)")
+                                    Text(accountName)
                                         .font(.system(size: 13, weight: .semibold))
                                         .padding(.leading, 4)
                                     
