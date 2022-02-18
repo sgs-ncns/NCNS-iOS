@@ -17,22 +17,16 @@ struct PopularListView: View {
         LazyVStack {
             ForEach(0 ..< 2) { _ in
                 NavigationLink(
-                    destination: ProfileSubView()
-                        .onAppear(perform: {
-                            isCurrentUser.checkUser.isMe = false
-                        }),
+                    destination: ProfileSubView(clickedUserName: "aaa"),
                     label: {
-                    UserCell()
-                        .padding(.leading)
+                        UserCell()
+                            .padding(.leading)
                     })
                 NavigationLink(
-                    destination: HashTagView(hashtagString: "hi")
-                        .onAppear(perform: {
-                            isCurrentUser.checkUser.isMe = false
-                        }),
+                    destination: HashTagView(hashtagString: "hi"),
                     label: {
-                    HashtagCell()
-                        .padding(.leading)
+                        HashtagCell()
+                            .padding(.leading)
                     })
             }
         }

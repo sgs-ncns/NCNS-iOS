@@ -17,10 +17,7 @@ struct TagListView: View {
         LazyVStack {
             ForEach(0 ..< 6) { _ in
                 NavigationLink(
-                    destination: ProfileSubView()
-                        .onAppear(perform: {
-                            isCurrentUser.checkUser.isMe = false
-                        }),
+                    destination: ProfileSubView(clickedUserName: "User"),
                     label: {
                     UserCell()
                         .padding(.leading)
