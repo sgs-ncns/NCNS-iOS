@@ -28,7 +28,7 @@ struct MainTabView: View {
                         .renderingMode(.template)
                 }
             
-            SearchView()
+            SearchView(searchViewModel: SearchViewModel())
             .tabItem {
                 Image("Search")
                     .renderingMode(.template)

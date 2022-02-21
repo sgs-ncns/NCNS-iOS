@@ -19,6 +19,13 @@ struct SearchBar: View {
 //                    self.inSearchMode = false
                 }
             })
+                .submitLabel(.done)
+                .onSubmit {
+                if !text.isEmpty {
+                    print("hi")
+                    ProfileSubView(clickedUserName: "\(text)")
+                }
+            }
                 .padding(8)
                 .padding(.horizontal, 24)
                 .background(Color(.systemGray6))
@@ -35,16 +42,26 @@ struct SearchBar: View {
                 
             
             if inSearchMode {
-                Button(action: {
-                    inSearchMode = false
-                    text = ""
-                    UIApplication.shared.endEditing()
-                }, label: {
-                    Text("Cancel")
-                        .foregroundColor(.black)
-                })
-                    .transition(AnyTransition.move(edge: .trailing))
-                    .animation(.easeInOut)
+                HStack {
+                    
+                    NavigationLink(destination: ProfileSubView(clickedUserName: "\(text)"), label: {
+                        Text("이동")
+                        
+                    Button(action: {
+                        inSearchMode = false
+                        text = ""
+                        UIApplication.shared.endEditing()
+                    }, label: {
+                        Text("취소")
+                        
+                        }).disabled(text.isEmpty)
+                            .foregroundColor(.black)
+                    })
+                        .transition(AnyTransition.move(edge: .trailing))
+                        .animation(.easeInOut)
+                
+                }
+                
             }
         }
     }

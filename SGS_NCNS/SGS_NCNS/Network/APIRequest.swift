@@ -116,4 +116,7 @@ extension APIRequest {
     func requestNotificationPost(data: NotificationPostModel, category: String) -> Future<Response, Error> {
         request(.requestNotificationPost(data: data, categoriy: category))
     }
+    func requestSearchAll(keyword: String) -> Future<Response, Error> {
+        request(.requestSearchAll(keyword: keyword))
+    }
 }

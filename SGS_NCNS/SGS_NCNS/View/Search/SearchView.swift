@@ -15,6 +15,7 @@ import SwiftUI
  */
 
 struct SearchView: View {
+    @StateObject var searchViewModel: SearchViewModel
     @State private var tabs = ["인기", "계정", "태그"]
     @State private var selectedTab = 0
     @State private var preSelection = 0
@@ -72,12 +73,15 @@ struct SearchView: View {
                     .frame(height: geometry.size.height)
                 }
             }
+            .onChange(of: searchText) { newValue in
+                self.searchViewModel.requestSearchAll(keyword: searchText)
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchView()
+//    }
+//}
