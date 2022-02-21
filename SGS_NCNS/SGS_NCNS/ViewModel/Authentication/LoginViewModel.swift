@@ -7,6 +7,8 @@
 
 import Foundation
 import Combine
+import Firebase
+import Accelerate
 
 /*
  로그인을 하기 위한 ViewModel
@@ -96,7 +98,11 @@ extension LoginViewModel {
                         kc.create("login", account: "refreshToken", value: (response.data?.refreshToken)!)
                         kc.create("login", account: "userId", value: String((response.data?.userId ?? 0)))
                         kc.create("login", account: "accountName", value: (response.data?.accountName)!)
+                        Messaging.messaging().subscribe(toTopic: kc.read("login", account: "accountName")!) { error in
+                            print("Subscribed")
+                        }
                         print("accessToken: \(kc.read("login", account: "accessToken")!)")
+                        
                         self?.isLogin.toggle()
                     } else {
                         print("Response Code Error")
@@ -123,6 +129,7 @@ extension LoginViewModel {
                         kc.create("login", account: "refreshToken", value: (response.data?.refreshToken)!)
                         kc.create("login", account: "userId", value: String((response.data?.userId) ?? 0))
                         kc.create("login", account: "accountName", value: (response.data?.accountName)!)
+                        
                         self?.isLogin.toggle()
                     } else {
                         print("Response Code Error")

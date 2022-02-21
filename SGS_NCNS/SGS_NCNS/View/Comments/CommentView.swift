@@ -13,6 +13,7 @@ struct CommentView: View {
     @State var isSearchMode = false
     @State var commentLoad = false
     @State var isCommentAdd = false
+    
     var postId: Int
     var body: some View {
         VStack {

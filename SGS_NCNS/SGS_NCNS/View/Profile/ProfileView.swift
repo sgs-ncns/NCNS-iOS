@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
     @EnvironmentObject var isCurrentUser: MySettings
@@ -46,10 +47,13 @@ struct ProfileView: View {
         let kc = KeyChainUtils()
         let logoutButton: ActionSheet.Button = .destructive(Text("Logout"), action: {
             // KeyChain에 저장된 유저 정보 삭제
+            Messaging.messaging().unsubscribe(fromTopic: kc.read("login", account: "accountName")!)
+            
             kc.delete("login", account: "accessToken")
             kc.delete("login", account: "refreshToken")
             kc.delete("login", account: "userId")
             kc.delete("login", account: "accountName")
+            
             
             self.loginCheckModel.isLoggedIn.toggle()
         })
