@@ -12,14 +12,15 @@ struct FeedContentView: View {
     @Binding var viewMore: Bool
     var feedContent: String
     var accountName: String
+    var postId: Int
     var body: some View {
         if !viewMore {
             // 더 보기 누르기 전 뷰
-            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName, postId: postId), height: $height)
 
         } else {
             // 더 보기 눌렀을 때 뷰
-            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName), height: $height)
+            FeedContentFilterView(vm: FeedContentViewModel(feedContent, user: accountName, postId: postId), height: $height)
 
         }
     }
@@ -27,6 +28,6 @@ struct FeedContentView: View {
 
 struct FeedContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedContentView(viewMore: .constant(false), feedContent: "tmp", accountName: "contea95")
+        FeedContentView(viewMore: .constant(false), feedContent: "tmp", accountName: "contea95", postId: 5)
     }
 }

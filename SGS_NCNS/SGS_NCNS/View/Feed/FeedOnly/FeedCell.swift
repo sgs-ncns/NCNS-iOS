@@ -13,7 +13,7 @@ import SwiftUI
 
 struct FeedCell: View {
     @State var viewMore = false
-    @State var isLiked = false
+    @State var isLiked: Bool = false
 
     var feedModel: FeedModel
 //    var path: String
@@ -24,7 +24,7 @@ struct FeedCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ImagePageView(userId: feedModel.userId, accountName: feedModel.accountName, path: "\( feedModel.accountName)/\( feedModel.imagePath)/")
+            PageViewCell(userId: feedModel.userId, accountName: feedModel.accountName, path: "\(feedModel.userId)/\(feedModel.imagePath)/", postId: feedModel.postId)
                 
             // Like
             HStack {
@@ -37,10 +37,10 @@ struct FeedCell: View {
             .padding(.leading, 15)
             .padding(.bottom, 5)
             
-            FeedContentView(viewMore: $viewMore, feedContent: feedModel.content, accountName: feedModel.accountName)
+            FeedContentView(viewMore: $viewMore, feedContent: feedModel.content, accountName: feedModel.accountName, postId: feedModel.postId)
                 .padding([.leading, .trailing], 15)
             
-            NavigationLink(destination: CommentView(), label: {
+            NavigationLink(destination: CommentView(postId: feedModel.postId), label: {
                 Text("댓글 \(feedModel.commentCount)개 모두 보기")
                     .font(.system(size: 13))
                     .foregroundColor(.gray)
@@ -48,17 +48,11 @@ struct FeedCell: View {
                 .padding([.leading, .trailing], 15)
                 .padding([.top, .bottom], 5)
             
-            Text("22시간 전")
-                .font(.system(size: 13))
-                .foregroundColor(.gray)
-                .padding([.leading, .trailing], 15)
-                .padding([.top, .bottom], 5)
+//            Text("22시간 전")
+//                .font(.system(size: 13))
+//                .foregroundColor(.gray)
+//                .padding([.leading, .trailing], 15)
+//                .padding([.top, .bottom], 5)
         }
     }
 }
-
-//struct FeedCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FeedCell(path: "test1/")
-//    }
-//}

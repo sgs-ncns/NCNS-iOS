@@ -16,23 +16,33 @@ enum API {
     case requestSignUp(data: UserSignUpModel)
     case requestEmailDuplicate(email: String)
     case requestAccountDuplicate(account: String)
-    case requestFeedList
+    case requestFeedList(page: Int)
+    case requestSubscribingFeed
     case requestProfile(accountName: String)
+    case requestUserPost(userId: Int)
     case requestFollow(targetId: Int)
     case requestKkanbu(targetId: Int)
     case requestFollowersList(userId: Int)
     case requestFollowingList(userId: Int)
     case requestKkanbuList
+    case requestCreatePost(data: UploadPostModel)
+    case requestPostDetail(postId: Int)
+    case requestCreateComment(data: CommentCreateModel)
+    case requestLikePost(postId: Int)
+    case requestSearchAll(keyword: String) // 리퀘스트 만들어야함
+    case requestNotificationGet(accountName: String)
+    case requestNotificationPost(data: NotificationPostModel, categoriy: String)
+    
 }
 
 extension API: TargetType, AccessTokenAuthorizable {
     // 접속할 Domain 설정
     var baseURL: URL {
-        //        return URL(string: "http://15.165.120.145:9000")!
+//                return URL(string: "http://15.165.120.145:9000")!
         switch self {
-        case .requestFeedList:
-            return URL(string: "https://4858f6c5-7e7e-40e8-8dc8-76e63466ff41.mock.pstmn.io")!
-        case .requestReissueToken, .requestEmailDuplicate, .requestAccountDuplicate, .requestAccountLogin, .requestLocalLogin, .requestSignUp, .requestSocialLogin, .requestProfile, .requestFollow, .requestKkanbu, .requestFollowersList, .requestFollowingList, .requestKkanbuList:
+        case .requestNotificationGet, .requestNotificationPost:
+            return URL(string: "http://localhost:8000")!
+        case .requestReissueToken, .requestEmailDuplicate, .requestAccountDuplicate, .requestAccountLogin, .requestLocalLogin, .requestSignUp, .requestSocialLogin, .requestProfile, .requestUserPost, .requestFollow, .requestKkanbu, .requestFollowersList, .requestFollowingList, .requestKkanbuList, .requestCreatePost, .requestSubscribingFeed, .requestPostDetail, .requestCreateComment, .requestLikePost, .requestSearchAll, .requestFeedList:
             return URL(string: "http://15.165.120.145:9000")!
         }
     }
@@ -55,9 +65,13 @@ extension API: TargetType, AccessTokenAuthorizable {
         case .requestAccountDuplicate:
             return "/api/user/account"
         case .requestFeedList:
-            return "/api/post"
+            return "/api/feed"
+        case .requestSubscribingFeed:
+            return "/api/feed/subscribing"
         case let .requestProfile(accountName):
             return "/api/user/\(accountName)"
+        case let .requestUserPost(userId):
+            return "/api/post"
         case let .requestFollow(targetId):
             return "/api/user/follow/\(targetId)"
         case let .requestKkanbu(targetId):
@@ -68,6 +82,20 @@ extension API: TargetType, AccessTokenAuthorizable {
             return "/api/user/\(userId)/following"
         case .requestKkanbuList:
             return "/api/user/subscribing"
+        case .requestCreatePost:
+            return "/api/post"
+        case let .requestPostDetail(postId):
+            return "/api/post/\(postId)"
+        case let .requestCreateComment:
+            return "/api/post/comment"
+        case let .requestLikePost(postId):
+            return "api/post/like/\(postId)"
+        case .requestSearchAll:
+            return "/api/search/type/all"
+        case let .requestNotificationGet(accountName):
+            return "/api/notify/\(accountName)"
+        case let .requestNotificationPost(_, category):
+            return "/api/notify/\(category)"
         }
     }
     
@@ -90,7 +118,11 @@ extension API: TargetType, AccessTokenAuthorizable {
             return .post
         case .requestFeedList:
             return .get
+        case .requestSubscribingFeed:
+            return .get
         case .requestProfile:
+            return .get
+        case .requestUserPost:
             return .get
         case .requestFollow:
             return .post
@@ -102,6 +134,20 @@ extension API: TargetType, AccessTokenAuthorizable {
             return .get
         case .requestKkanbuList:
             return .get
+        case .requestCreatePost:
+            return .post
+        case .requestPostDetail:
+            return .get
+        case .requestCreateComment:
+            return .post
+        case .requestLikePost:
+            return .post
+        case .requestSearchAll:
+            return .get
+        case .requestNotificationGet:
+            return .get
+        case .requestNotificationPost:
+            return .post
         }
     }
     
@@ -134,10 +180,14 @@ extension API: TargetType, AccessTokenAuthorizable {
                 "account_name" : account
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .requestFeedList:
+        case let .requestFeedList(page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.queryString)
+        case let .requestSubscribingFeed:
             return .requestPlain
         case .requestProfile:
             return .requestPlain
+        case let .requestUserPost(userId):
+            return .requestParameters(parameters: ["userId": userId], encoding: URLEncoding.queryString)
         case .requestFollow:
             return .requestPlain
         case.requestKkanbu:
@@ -148,6 +198,26 @@ extension API: TargetType, AccessTokenAuthorizable {
             return .requestPlain
         case .requestKkanbuList:
             return .requestPlain
+        case let .requestCreatePost(data):
+            return .requestJSONEncodable(data)
+        case .requestPostDetail:
+            return .requestPlain
+        case let .requestCreateComment(data):
+            let parameters: [String: Any] = [
+                "account_name": data.accountName,
+                "content" : data.content,
+                "parent_id" : 0,
+                "post_id" : data.postId
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .requestLikePost:
+            return .requestPlain
+        case let .requestSearchAll(keyword):
+            return .requestParameters(parameters: ["keyword": keyword], encoding: URLEncoding.queryString)
+        case .requestNotificationGet:
+            return .requestPlain
+        case let .requestNotificationPost(data, _):
+            return .requestJSONEncodable(data)
         }
         
     }
@@ -167,9 +237,11 @@ extension API: TargetType, AccessTokenAuthorizable {
                 .requestSocialLogin(_),
                 .requestSignUp(_),
                 .requestEmailDuplicate(_),
-                .requestAccountDuplicate(_):
+                .requestAccountDuplicate(_),
+                .requestNotificationGet(_),
+                .requestNotificationPost(_, _):
             return .none
-        case .requestFeedList, .requestProfile(_), .requestFollow(_), .requestKkanbu(_), .requestFollowersList, .requestFollowingList, .requestKkanbuList:
+        case .requestFeedList, .requestSubscribingFeed, .requestProfile(_), .requestUserPost, .requestFollow(_), .requestKkanbu(_), .requestFollowersList, .requestFollowingList, .requestKkanbuList, .requestCreatePost(_), .requestPostDetail(_), .requestCreateComment(_), .requestSearchAll(_), .requestLikePost(_):
             // 나중에 .bearer로 바꿔야함
             return .bearer
         }

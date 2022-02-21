@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct CommentCreateView: View {
+    @StateObject var commentCreateViewModel = CommentCreateViewModel()
+    @StateObject var notificationPostViewModel = NotificationPostViewModel()
+    @State var createCommentComplete = false
     @Binding var text: String
     @Binding var inSearchMode: Bool
+    @Binding var isCommentAdd: Bool
+    var postId: Int
+    var accountId: String
     let placeholder: Text
     let imageName: String
+    let kcAccountId = KeyChainUtils().read("login", account: "accountName")!
     
     let emojiList = ["❤️", "🙌", "🔥", "👏", "😢", "😍", "😮", "😂"]
     
@@ -21,7 +28,6 @@ struct CommentCreateView: View {
             HStack {
                 ForEach(emojiList, id: \.self) { item in
                     Button(action: {
-                        //                        text.append(contentsOf: "\(item)")
                         text += "\(item)"
                     }, label: {
                         Text("\(item)")
@@ -65,8 +71,12 @@ struct CommentCreateView: View {
                             .padding(.trailing, 10)
                         
                         Button(action: {
-                            
-                            text = ""
+                            commentCreateViewModel.requestCreateComment(data: CommentCreateModel(accountName: KeyChainUtils().read("login", account: "accountName")!, content: text, postId: postId))
+                            if createCommentComplete {
+                                notificationPostViewModel.requsetNotificationPost(data: NotificationPostModel(accountName: self.accountId, postId: self.postId, targetAccountName: self.kcAccountId), category: "comment")
+                                isCommentAdd = true
+                                text = ""
+                            }
                             UIApplication.shared.endEditing()
                         }, label: {
                             Text("게시")
@@ -80,14 +90,18 @@ struct CommentCreateView: View {
                 }
             }.padding([.top, .bottom], 10)
         }
-        
-        
-        
+        .onReceive(commentCreateViewModel.$isCommentCreate, perform: {
+            if $0 {
+                self.createCommentComplete = true
+            } else {
+                self.createCommentComplete = false
+            }
+        })
     }
 }
 
 struct CommentCreateView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCreateView(text: .constant("가나"), inSearchMode: .constant(true), placeholder: Text("댓글 달기..."), imageName: "img6")
+        CommentCreateView(text: .constant("가나"),  inSearchMode: .constant(true), isCommentAdd: .constant(false), postId: 0, accountId: "jo", placeholder: Text("댓글 달기..."), imageName: "img6")
     }
 }

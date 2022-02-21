@@ -8,15 +8,16 @@
 import Foundation
 
 struct UploadPostModel: Codable {
-    var images: String    // 사진 폴더 이름
-    var content: String     // 피드 내용
-    var hashtags: [String]   // 해시 태그
-    var humantags: [String]  // 사람 태그
-    
     private enum CodingKeys: String, CodingKey {
-        case images
+        case accountName = "account_name"
         case content
-        case hashtags
-        case humantags
+        case hashtag
+        case imagePath = "image_path"
+        case usertag
     }
+    var accountName: String
+    var content: String
+    var hashtag: [String]
+    var imagePath: String
+    var usertag: [Int] = []
 }

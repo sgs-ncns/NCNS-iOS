@@ -11,7 +11,7 @@ import Foundation
 func nowDate() -> String {
     let now = Date()
     let date = DateFormatter()
-    date.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    date.dateFormat = "yyyy-MM-ddHH:mm:ss"
 
     date.locale = Locale(identifier: "ko_kr")
     date.timeZone = TimeZone(abbreviation: "KST")

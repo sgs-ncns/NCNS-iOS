@@ -71,8 +71,11 @@ extension APIRequest {
     func requestAccountDuplicate(account: String) -> Future<Response, Error> {
         request(.requestAccountDuplicate(account: account))
     }
-    func requestFeedList() -> Future<Response, Error> {
-        request(.requestFeedList)
+    func requestFeedList(page: Int) -> Future<Response, Error> {
+        request(.requestFeedList(page: page))
+    }
+    func requestSubscribingFeed() -> Future<Response, Error> {
+        request(.requestSubscribingFeed)
     }
     func requestProfile(accountName: String) -> Future<Response, Error> {
         request(.requestProfile(accountName: accountName))
@@ -91,5 +94,26 @@ extension APIRequest {
     }
     func requestKkanbuList() -> Future<Response, Error> {
         request(.requestKkanbuList)
+    }
+    func requestCreatePost(data: UploadPostModel) -> Future<Response, Error> {
+        request(.requestCreatePost(data: data))
+    }
+    func requestUserPost(userId: Int) -> Future<Response, Error> {
+        request(.requestUserPost(userId: userId))
+    }
+    func requestPostDetail(postId: Int) -> Future<Response, Error> {
+        request(.requestPostDetail(postId: postId))
+    }
+    func requestLikePost(postId: Int) -> Future<Response, Error> {
+        request(.requestLikePost(postId: postId))
+    }
+    func requestCreateComment(data: CommentCreateModel) -> Future<Response, Error> {
+        request(.requestCreateComment(data: data))
+    }
+    func requestNotificationGet(accountName: String) -> Future<Response, Error> {
+        request(.requestNotificationGet(accountName: accountName))
+    }
+    func requestNotificationPost(data: NotificationPostModel, category: String) -> Future<Response, Error> {
+        request(.requestNotificationPost(data: data, categoriy: category))
     }
 }

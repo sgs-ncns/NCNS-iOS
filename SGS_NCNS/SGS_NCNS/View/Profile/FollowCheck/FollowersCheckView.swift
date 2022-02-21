@@ -22,7 +22,7 @@ struct FollowersCheckView: View {
                             })
                     }
                 } else {
-                    VStack(alignment: .center) {
+                    VStack(alignment: .center) {    
                         Text("")
                     }.frame(width: geometry.size.width)
                 }

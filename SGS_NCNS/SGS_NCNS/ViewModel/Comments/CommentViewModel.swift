@@ -16,9 +16,11 @@ import SwiftUI
 class CommentViewModel: ObservableObject {
     @Published var feedContent: [Comment<Text>] = []
     private var splitText: [String]
+    var user: String
     
     // 전체 String 받아와서 split 진행
     init(_ text: String, user: String) {
+        self.user = user
         self.splitText = text.split(separator: " ", omittingEmptySubsequences: false).map { "\($0) " }
         self.splitText.insert("\(user) ", at: 0)
         
@@ -29,7 +31,7 @@ class CommentViewModel: ObservableObject {
         splitText.enumerated().forEach {
             if $0 == 0 {
                 let user = $1
-                feedContent.append(.user(NavigationLink(destination: ProfileSubView(clickedUserName: user), label: { Text("\(user)")
+                feedContent.append(.user(NavigationLink(destination: ProfileSubView(clickedUserName: self.user), label: { Text("\(user)")
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.black)
                 })))

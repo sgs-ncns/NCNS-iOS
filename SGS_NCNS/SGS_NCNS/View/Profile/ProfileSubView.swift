@@ -26,7 +26,7 @@ struct ProfileSubView: View {
                                 profileViewModel.requestKkanbu(targetId: profileViewModel.profileModel.userId)
                             }
                         
-                        PostGridView()
+                        PostGridView(isPostGridViewLoad: self.profileViewModel.profileModel.postCount != 0, userId: self.profileViewModel.profileModel.userId)
                             .frame(width: UIScreen.screenWidth)
                     }.padding(.top)
                 } else {

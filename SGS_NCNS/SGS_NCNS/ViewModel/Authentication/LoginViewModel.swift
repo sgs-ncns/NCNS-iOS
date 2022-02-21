@@ -16,8 +16,8 @@ import Combine
 */
 class LoginViewModel: ObservableObject {
     @Published var loginModel: LoginModel
-    @Published var email = ""
-    @Published var password = ""
+    @Published var email = "contea95"
+    @Published var password = "12341234"
     @Published var isEmailFormat = false
     @Published var isPasswordFormat = false
     @Published var isLogin = false
@@ -100,6 +100,7 @@ extension LoginViewModel {
                         self?.isLogin.toggle()
                     } else {
                         print("Response Code Error")
+                        print(response.message)
                     }
                 } else {
                     print("Response Catch Error")

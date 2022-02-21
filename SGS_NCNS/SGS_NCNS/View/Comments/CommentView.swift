@@ -8,36 +8,58 @@
 import SwiftUI
 
 struct CommentView: View {
+    @StateObject var commentDetailViewModel =  CommentDetailViewModel()
     @State var commentText = ""
     @State var isSearchMode = false
+    @State var commentLoad = false
+    @State var isCommentAdd = false
+    var postId: Int
     var body: some View {
         VStack {
-            ScrollView {
-                VStack {
-                    CommentHeaderView()
-                    Divider()
-                    
-                    // cell
-
-                    CommentCell()
-                    CommentCell()
-                    CommentCell()
-                    CommentCell()
-                    CommentCell()
+            if commentLoad {
+                ScrollView {
+                    VStack {
+                        // content, user 필요
+                        CommentHeaderView(content: commentDetailViewModel.commentLists.content, user: commentDetailViewModel.commentLists.accountName)
+                        Divider()
+                        
+                        if isCommentAdd {
+                            CommentCell(content: commentText, user: KeyChainUtils().read("login", account: "accountName")!)
+                        }
+                        
+                        // cell
+                        // comment, user
+                        if commentDetailViewModel.commentLists.commentList.count != 0 {
+                            ForEach(0 ..< commentDetailViewModel.commentLists.commentList.count, id: \.self) { i in
+                                CommentCell(content: commentDetailViewModel.commentLists.commentList[i].content, user: commentDetailViewModel.commentLists.commentList[i].accountName)
+                            }
+                        } else {
+                            ZStack {
+                                Text("댓글써주세요")
+                                    .padding()
+                            }
+                            
+                        }
+                        
+                    }
                 }
-            }
-            
-            Spacer()
-            CommentCreateView(text: $commentText, inSearchMode: $isSearchMode, placeholder: Text("댓글 달기..."), imageName: "img6")
                 
+                Spacer()
+                CommentCreateView(text: $commentText, inSearchMode: $isSearchMode,
+                                  isCommentAdd: $isCommentAdd,postId: commentDetailViewModel.commentLists.postId, accountId: commentDetailViewModel.commentLists.accountName, placeholder: Text("댓글 달기..."),  imageName: "img6")
+            } else {
+                ProgressView()
+            }
         }
+        .onAppear(perform: {
+            commentDetailViewModel.requestPostDetail(postId: self.postId)
+        })
+        .onReceive(commentDetailViewModel.$isCommentLoading, perform: {
+            if !$0 {
+                self.commentLoad = true
+            }
+        })
         .navigationTitle("Comment")
-    }
-}
-
-struct CommentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentView()
     }
 }
 

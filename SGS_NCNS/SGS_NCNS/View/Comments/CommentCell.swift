@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CommentCell: View {
     @State private var height: CGFloat = 0
+    var content: String
+    var user: String
+    
     var body: some View {
         HStack(alignment: .top) {
             Image("Exprofile_aim")
@@ -17,19 +20,18 @@ struct CommentCell: View {
                 .clipShape(Circle())
                 .padding(.leading, 10)
             VStack(alignment: .leading, spacing: 0) {
-                CommentContentFilterView(vm: CommentViewModel("하이하이 가나다 라마바 아자차카타파하 쓰뜨링~ #하이 @나나", user: "starshan9555"), height: $height)
+                CommentContentFilterView(vm: CommentViewModel(content, user: user), height: $height)
                 Text("22시간 전")
                     .font(.system(size: 13))
                     .foregroundColor(.gray)
                     .padding([.top, .bottom], 5)
             }.padding([.top, .bottom], 5)
-                .padding(.trailing, 5)
-        }
+        }.padding([.leading, .trailing], 5)
     }
 }
 
 struct CommentCell_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCell()
+        CommentCell(content: "", user: "")
     }
 }

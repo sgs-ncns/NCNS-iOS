@@ -8,63 +8,54 @@
 import SwiftUI
 
 struct NotificationsView: View {
+    @StateObject var notificationGetViewModel = NotificationGetViewModel()
+    // 임시
+    @StateObject var notificationPostViewModel = NotificationPostViewModel()
     @State private var tabs = ["깐부 알림", "일반 알림"]
     @State private var selectedTab = 0
     @State private var preSelection = 0
     @State private var isFirstLoad = true
+    @State private var loadingComplete = false
+    
+    var kcAccountId: String = KeyChainUtils().read("login", account: "accountName")!
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                VStack(spacing: 0) {
-                    TabsView(tabs: $tabs, preSelection: $preSelection, selection: $selectedTab, underlineColor: .black) { title, isSelected in
-                        Text(title.uppercased())
-                            .font(.system(size: 14))
-                            .fontWeight(.semibold)
-                            .foregroundColor(isSelected ? .black : .gray)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }.padding(.bottom, 0)
-                    
-                    Divider()
-                        .padding(0)
-                }.transition(AnyTransition.opacity.animation(.easeInOut))
-                    .animation(.easeIn, value: selectedTab)
-                
-                GeometryReader { geometry in
-                    ScrollView {
-                        if selectedTab == 0 {
-                            KKanbuNotificationsView()
-                                .padding(.top, 10)
-                                .transition(.asymmetric(insertion: AnyTransition.move(edge: .leading), removal: AnyTransition.move(edge: .trailing)))
-                        } else if selectedTab == 1 {
-                            NormalNotificationsView()
-                                .padding(.top, 10)
-                                .transition(.asymmetric(insertion: AnyTransition.move(edge: .trailing), removal: AnyTransition.move(edge: .leading)))
-                        } else {
-                            var _ = print("잘못된 탭 클릭입니다.")
+            ScrollView {
+                VStack(spacing: 5) {
+                    if notificationGetViewModel.notificationGetModel.count != 0 {
+                        ForEach(0 ..< notificationGetViewModel.notificationGetModel.count, id: \.self) { i in
+                            UserCell(accountName: "\(notificationGetViewModel.notificationGetModel[i].likedName)님이 \(notificationGetViewModel.notificationGetModel[i].category)를 달았습니다.", nickname: "")
+                            .padding([.leading, .trailing], 10)
                         }
+                    } else {
+                        Text("Please Wait Like which one Press to you!")
                     }
-                    .transition(AnyTransition.opacity.animation(.easeInOut))
-                    .animation(.easeIn, value: selectedTab)
-                    .padding(.top, 1)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
             
-            
+            .onReceive(notificationGetViewModel.$isLoading, perform: {
+                if !$0 {
+                    self.loadingComplete = true
+                } else {
+                    self.loadingComplete = false
+                }
+            })
             .navigationTitle("활동")
             .padding(0.0)
             .navigationBarTitleDisplayMode(.inline)
         }.navigationViewStyle(StackNavigationViewStyle())
             .onAppear {
-                if isFirstLoad{
+                if isFirstLoad {
+                    notificationGetViewModel.requestNotificationGet(accountId: kcAccountId)
                     isFirstLoad = false
                 }
+                
             }
     }
 }
 
-struct NotificationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationsView()
-    }
-}
+//struct NotificationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NotificationsView()
+//    }
+//}
