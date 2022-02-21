@@ -18,8 +18,8 @@ import Accelerate
 */
 class LoginViewModel: ObservableObject {
     @Published var loginModel: LoginModel
-    @Published var email = "contea95"
-    @Published var password = "12341234"
+    @Published var email = ""
+    @Published var password = ""
     @Published var isEmailFormat = false
     @Published var isPasswordFormat = false
     @Published var isLogin = false
