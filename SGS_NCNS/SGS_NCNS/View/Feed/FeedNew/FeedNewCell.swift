@@ -31,9 +31,11 @@ struct FeedNewCell: View {
                                 .frame(width: 86, height: 86)
                                 .clipShape(Circle())
                         }
+                        NavigationLink(destination: ProfileSubView(clickedUserName: feedNewViewModel.feedSubscribingModel[i].recentFeeds[0].accountName)) {
+                            Text(feedNewViewModel.feedSubscribingModel[i].recentFeeds[0].accountName)
+                                .font(.system(size: 13, weight: .semibold))
+                        }
                         
-                        Text(feedNewViewModel.feedSubscribingModel[i].recentFeeds[0].accountName)
-                            .font(.system(size: 13, weight: .semibold))
                     }
                     .padding(.leading, 11)
                     

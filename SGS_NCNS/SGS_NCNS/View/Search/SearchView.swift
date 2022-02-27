@@ -74,6 +74,7 @@ struct SearchView: View {
                 }
             }
             .onChange(of: searchText) { newValue in
+                print("\(searchText)")
                 self.searchViewModel.requestSearchAll(keyword: searchText)
             }
         }.navigationViewStyle(StackNavigationViewStyle())

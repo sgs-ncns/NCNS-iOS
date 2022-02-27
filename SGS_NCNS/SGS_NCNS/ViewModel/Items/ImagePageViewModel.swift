@@ -80,7 +80,7 @@ class ImagePageViewModel: ObservableObject {
     
     func listFileOnlyOne(path: String) {
         self.isListingFile = true
-//        self.urls = []
+        self.urls = []
         print("path: \(path)")
         resultSink = Amplify.Storage.list(options: .init(path: path))
             .resultPublisher
@@ -100,7 +100,7 @@ class ImagePageViewModel: ObservableObject {
     
     func listFile(path: String) {
         self.isListingFile  = true
-        self.urls = []
+        
         resultSink = Amplify.Storage.list(options: .init(path: path))
             .resultPublisher
             .receive(on: DispatchQueue.main)

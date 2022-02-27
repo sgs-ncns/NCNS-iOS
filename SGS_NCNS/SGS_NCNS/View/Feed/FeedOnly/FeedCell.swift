@@ -15,7 +15,7 @@ struct FeedCell: View {
     @State var viewMore = false
     @State var isLiked: Bool = false
 
-    var feedModel: FeedModel
+    @State var feedModel: FeedModel
 //    var path: String
     
     init(feedModel: FeedModel) {
@@ -30,9 +30,6 @@ struct FeedCell: View {
             HStack {
                 Text("\(feedModel.likeCount) Like")
                     .font(.system(size: 13, weight: .semibold))
-                    .onTapGesture {
-                        print("click like")
-                    }
             }
             .padding(.leading, 15)
             .padding(.bottom, 5)

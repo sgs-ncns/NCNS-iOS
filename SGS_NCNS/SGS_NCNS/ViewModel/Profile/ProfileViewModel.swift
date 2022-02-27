@@ -43,6 +43,7 @@ extension ProfileViewModel {
                 if let response = try?
                     $0.map(ResponseModel<ProfileModel>.self) {
                     if response.responseCode == "1000" {
+//                        print(response.data!)
                         self?.profileModel = response.data!
                     }
                 } else {

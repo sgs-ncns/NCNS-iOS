@@ -62,7 +62,23 @@ MVVM 패턴을 좀 더 유용하게 쓰기 위해 SwiftUI에 도전했습니다.
 결론적으로는 애플이 만든 Frist-Party를 완전하게 써보고 싶었습니다. Snap-Kit이 아닌 SwiftUI, RxSwift가 아닌 Combine을 사용해 애플이 추구하는 방향을 이해하고싶기 때문입니다.
 
 ## 구동 화면 
-(추가 예정)
+|                          로그인 화면                          |                          팔로우 없을 시 피드                          |                          팔로우 있을 시 피드      
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| <img alt="1_loginView" src="https://user-images.githubusercontent.com/64491659/155893784-34a870ac-4bc9-42e0-9fd9-02a0d5293975.png" width="60%" /> | <img alt="2_NoFollowerFeedView" src="https://user-images.githubusercontent.com/64491659/155893821-9303f801-8f6f-4678-905b-eb49df09b8a7.png" width = "90%"/> | <img alt="3_FollowerFeedView" src="https://user-images.githubusercontent.com/64491659/155893823-61a81004-1f43-4b05-9110-f589189d4031.png" width = "90%" />
+|
+
+ |                          포스트가 없을 시 프로필 뷰                     |                          포스트가 있을 시 프로필 뷰        
+| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| <img alt="5_NoPostProfileView" src="https://user-images.githubusercontent.com/64491659/155893865-d4d7defc-fb14-4b15-92b5-ad72db2b4f57.png" width = "60%" /> | <img alt="6_PostProfileView" src="https://user-images.githubusercontent.com/64491659/155893868-34b2ca91-50f5-4714-b681-6c8a91593c6b.png"  width="60%" /> |
+
+|                          깐부 맺기                     |                          깐부 추가 후 피드 보기         |                          깐부 추가 확인                   |          프로필 뷰 팔로워 체크
+| :----------------------------------------------------------:| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![깐부맺기](https://user-images.githubusercontent.com/64491659/155894067-4cbfb5ab-7f95-46ef-9c95-2d59dac9897c.gif) | ![깐부추가 후피드만 보기](https://user-images.githubusercontent.com/64491659/155894091-febf94a1-c0bf-46a5-a5ee-a01ff684beb9.gif) | ![깐부추가확인](https://user-images.githubusercontent.com/64491659/155894112-10cd1f1e-b780-4704-9871-24a223753a41.gif) | ![프로필뷰팔로워 체크](https://user-images.githubusercontent.com/64491659/155894356-921b379b-d9b2-43b2-989d-2233d787ec20.gif) | 
+
+ |                          푸시 알림                     |                          서치 후 댓글        
+| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| ![푸시알림](https://user-images.githubusercontent.com/64491659/155894641-6bf84cb4-68d9-4d68-93fd-1cdf2a7f9161.gif) | ![서치 후 댓글](https://user-images.githubusercontent.com/64491659/155894742-d2f3f8c5-9c2e-4856-a72c-92b94cbb568d.gif) |
+
 
 ## 디렉토리 구조
 ```zsh

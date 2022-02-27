@@ -43,10 +43,12 @@ struct SearchBar: View {
             
             if inSearchMode {
                 HStack {
-                    
                     NavigationLink(destination: ProfileSubView(clickedUserName: "\(text)"), label: {
                         Text("이동")
-                        
+                            .disabled(!text.isEmpty)
+                            .transition(AnyTransition.move(edge: .trailing))
+                            .animation(.easeInOut)
+                    })
                     Button(action: {
                         inSearchMode = false
                         text = ""
@@ -54,11 +56,8 @@ struct SearchBar: View {
                     }, label: {
                         Text("취소")
                         
-                        }).disabled(text.isEmpty)
-                            .foregroundColor(.black)
-                    })
-                        .transition(AnyTransition.move(edge: .trailing))
-                        .animation(.easeInOut)
+                        })
+                        
                 
                 }
                 

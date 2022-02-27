@@ -72,7 +72,7 @@ struct FollowCheckView: View {
                     .animation(.easeIn, value: selectedTab)
                     .padding(.top, 1)
                     .navigationBarTitleDisplayMode(.inline)
-                    .frame(height: geometry.size.height)
+//                    .frame(height: geometry.size.height)
                 }
             } else {
                 ProgressView()

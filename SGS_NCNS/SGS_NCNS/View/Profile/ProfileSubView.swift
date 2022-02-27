@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileSubView: View {
     @StateObject var profileViewModel = ProfileViewModel()
-    @State private var isFirstLoad = true
     @State var clickedFollowButton = false
     @State var clickedKkanbuButton = false
     @State var clickedUserName: String
@@ -29,6 +28,7 @@ struct ProfileSubView: View {
                         PostGridView(isPostGridViewLoad: self.profileViewModel.profileModel.postCount != 0, userId: self.profileViewModel.profileModel.userId)
                             .frame(width: UIScreen.screenWidth)
                     }.padding(.top)
+                
                 } else {
                     // 서버와 통신 싱크를 맞추기위해 isLoading을 통한 로딩 인디케이터
                     VStack {
@@ -44,10 +44,6 @@ struct ProfileSubView: View {
         .onAppear {
             // 사용자 프로필 조회하기
             self.profileViewModel.requestProfile(accountName: clickedUserName)
-            if isFirstLoad{
-                
-                isFirstLoad = false
-            }
         }
     }
 }

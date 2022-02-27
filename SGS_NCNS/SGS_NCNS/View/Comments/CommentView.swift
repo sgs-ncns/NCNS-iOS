@@ -13,6 +13,7 @@ struct CommentView: View {
     @State var isSearchMode = false
     @State var commentLoad = false
     @State var isCommentAdd = false
+    @State var commentUpdate = false
     
     var postId: Int
     var body: some View {
@@ -36,7 +37,7 @@ struct CommentView: View {
                             }
                         } else {
                             ZStack {
-                                Text("댓글써주세요")
+                                Text("댓글을 써주세요")
                                     .padding()
                             }
                             

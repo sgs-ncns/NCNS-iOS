@@ -45,10 +45,8 @@ struct NotificationsView: View {
             .navigationBarTitleDisplayMode(.inline)
         }.navigationViewStyle(StackNavigationViewStyle())
             .onAppear {
-                if isFirstLoad {
                     notificationGetViewModel.requestNotificationGet(accountId: kcAccountId)
-                    isFirstLoad = false
-                }
+                
                 
             }
     }

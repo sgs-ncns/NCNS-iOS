@@ -20,6 +20,7 @@ class CommentCreateViewModel: ObservableObject {
 
 extension CommentCreateViewModel {
     func requestCreateComment(data: CommentCreateModel) {
+        self.isCommentCreate = false
         APIRequest.shared.requestCreateComment(data: data)
             .sink(receiveCompletion: { _ in
                 self.isCommentCreate = true

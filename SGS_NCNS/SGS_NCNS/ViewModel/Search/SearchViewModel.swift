@@ -10,6 +10,7 @@ import Combine
 
 class SearchViewModel: ObservableObject {
     @Published var searchModel = SearchModel(globals: [SearchGlobalModel](), hashtags: [SearchHashtagsModel](), users: [SearchUsersModel]())
+    @Published var tmp: String = ""
     
     private var bag = Set<AnyCancellable>()
     
@@ -23,9 +24,12 @@ extension SearchViewModel {
         APIRequest.shared.requestSearchAll(keyword: keyword)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] in
                 if let response = try?
-                    $0.map(ResponseModel<SearchModel>.self) {
+                    $0.map(ResponseModel<String>.self) {
+                    
                     if response.responseCode == "4000" {
-                        self?.searchModel = response.data!
+                        self?.tmp = response.data!
+                        print("성공!")
+                        print("\(response.data)")
                     } else {
                         print("search response error \(response.message)")
                     }

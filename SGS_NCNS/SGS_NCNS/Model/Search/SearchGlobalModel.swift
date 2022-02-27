@@ -12,6 +12,6 @@ struct SearchGlobalModel: Codable {
         case hashtag
         case user
     }
-    var hashtag: [SearchHashtagsModel]
-    var user: [SearchUsersModel]
+    var hashtag: [SearchHashtagsModel]?
+    var user: [SearchUsersModel]?
 }
